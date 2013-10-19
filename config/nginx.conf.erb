@@ -25,7 +25,7 @@ http {
         client_body_timeout 5;
 
         upstream app_server {
-                server unix:/tmp/puma.socket fail_timeout=0;
+                server unix:/tmp/puma.sock fail_timeout=0;
          }
 
         server {
