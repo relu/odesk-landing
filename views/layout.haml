@@ -13,92 +13,28 @@
       %a.logo{href: '/'}
         %img{src: '/images/header-logo.png'}
 
-    %main.page-main
-      %section.container
-        .row.page-headline
-          .col-lg-12.text-center
-            %h1 Trusted PHP Developers. Rated, Reviewed, Tested.
-            %h3 Find the right PHP Developer in <strong>3 easy steps</strong>
+    %main.page-main= yield
+
+    %section.featured-clients
+      .container
+        .wrapper.text-center
+          %p
+            %em More than <strong>900,000 companies</strong> use oDesk including:
+          %hr/
+          %img{src: '/images/featured-clients.jpg', alt: 'Featured clients'}
+    %section.testimonial
+      .container
         .row
-          .steps.col-lg-12.text-center
-            .step-block.block-1
-              .flipper
-                .front
-                  %i.icon
-                  %span
-                    %strong.num 1.
-                    Post a Job
-                .back
-                  %p
-                    Our time-tracking tools provide full visibility into your
-                    project's progress, so you'll know you're only paying for
-                    being done.
-                  %a.btn.btn-blue{href: '#'} Sign Up
-            .step-block.block-2
-              .flipper
-                .front
-                  %i.icon
-                  %span
-                    %strong.num 2.
-                    Review Applicants
-                .back
-            .step-block.block-3
-              .flipper
-                .front
-                  %i.icon
-                  %span
-                    %strong.num 3.
-                    Hire Right Away
-                .back
+          .col-lg-8.col-lg-offset-2.text-center
+            %blockquote
+              %p "We wanted to ramp up quickly with the best people. Our bookkeepers,<br> developers, designers, customer support &mdash; everything is through oDesk."
+              %small.author.pull-right Jay Shapiro // Founder of Infinite Monkeys
+            %br/
+            %a.btn.btn-lg.btn-submit{href: '#'} Get Applicants Fast
 
-      %section.form-section
-        .container
-          .form-headline
-            %h1 Get PHP Programmer Applications Fast
-          .row
-            .col-lg-6.col-lg-offset-3
-              %form.form{action: '/send', method: 'post'}
-                .form-group
-                  %label{for: 'title'} Give your project a title
-                  %input#title.form-control{name: 'title', type: 'text', placeholder: 'Ex. Build a website'}
-                .form-group
-                  %label{for: 'desc'} Describe what you want done
-                  %textarea#desc.form-control{name: 'title', rows: 7, placeholder: "Enter details about your project and the skills you are looking for. (must be at least 50 characters)"}
-                .form-group
-                  %label{for: 'email'} Enter your email
-                  %input#email.form-control{name: 'email', type: 'email'}
-                .form-group.text-center
-                  = csrf_tag
-                  %input.btn.btn-lg.btn-submit{type: 'submit', value: 'Get Applicants Fast'}
-                  %p
-                    %em
-                      By pressing 'Get Applicants Fast' you confirm that you accept the
-                      %br/
-                      %a{href: '#'} Terms and Conditions
-                      and
-                      %a{href: '#'} Privacy Policy
-
-      %section.contractors= yield
-      %section.featured-clients
-        .container
-          .wrapper.text-center
-            %p
-              %em More than <strong>900,000 companies</strong> use oDesk including:
-            %hr/
-            %img{src: '/images/featured-clients.jpg', alt: 'Featured clients'}
-      %section.testimonial
-        .container
-          .row
-            .col-lg-8.col-lg-offset-2.text-center
-              %blockquote
-                %p "We wanted to ramp up quickly with the best people. Our bookkeepers,<br> developers, designers, customer support &mdash; everything is through oDesk."
-                %small.author.pull-right Jay Shapiro // Founder of Infinite Monkeys
-              %br/
-              %a.btn.btn-lg.btn-submit{href: '#'} Get Applicants Fast
-
-      %footer.page-footer.text-center
-        %img.footer-logo{src: '/images/footer-logo.png', alt: 'oDesk'}
-        %p.copy= "&copy; 2003-#{Time.now.year} oDesk Corporation."
+    %footer.page-footer.text-center
+      %img.footer-logo{src: '/images/footer-logo.png', alt: 'oDesk'}
+      %p.copy= "&copy; 2003-#{Time.now.year} oDesk Corporation."
 
     %script{src: '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'}
     %script{src: '//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js'}
