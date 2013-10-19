@@ -12,12 +12,12 @@ class ODLanding < Sinatra::Base
   configure do
     enable :sessions
     Sass::Plugin.options[:style] = :compressed
-    Sass::Plugin.options[:css_location] = "#{settings.root}/public/css"
-    Sass::Plugin.options[:template_location] = "#{settings.root}/public/sass"
+    Sass::Plugin.options[:css_location] = "#{settings.public_folder}/public/css"
+    Sass::Plugin.options[:template_location] = "#{settings.public_folder}/public/sass"
     use Sass::Plugin::Rack
 
     use Rack::Csrf, :raise => true
-    use Rack::Coffee, root: 'public', urls: '/js'
+    use Rack::Coffee, root: settings.public_folder, urls: '/js'
   end
 
   configure :development do

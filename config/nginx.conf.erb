@@ -46,10 +46,9 @@ http {
                         proxy_pass http://app_server;
 				}
 
-				location ~* ^/(js|css|images)/ {
+				location ^/(js|css|images)/ {
 					expires max;
 					add_header Cache-Control public;
-					break;
 				}
         }
 }
