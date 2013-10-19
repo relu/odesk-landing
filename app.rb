@@ -12,12 +12,12 @@ class ODLanding < Sinatra::Base
   configure do
     enable :sessions
     Sass::Plugin.options[:style] = :compressed
-    Sass::Plugin.options[:css_location] = "#{settings.public_folder}/public/css"
-    Sass::Plugin.options[:template_location] = "#{settings.public_folder}/public/sass"
+    Sass::Plugin.options[:css_location] = "#{public_folder}/public/css"
+    Sass::Plugin.options[:template_location] = "#{public_folder}/public/sass"
     use Sass::Plugin::Rack
 
     use Rack::Csrf, :raise => true
-    use Rack::Coffee, root: settings.public_folder, urls: '/js'
+    use Rack::Coffee, root: public_folder, urls: '/js'
   end
 
   configure :development do
@@ -29,7 +29,7 @@ class ODLanding < Sinatra::Base
     set :server, :puma
     register Sinatra::Cache
     enable :cache_enabled
-    set :cache_output_dir, Proc.new { File.join(root, 'public', 'cache') }
+    set :cache_output_dir, "#{public_folder}/cache"
   end
 
   get '/:context' do
