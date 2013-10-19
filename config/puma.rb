@@ -2,6 +2,7 @@
 
 require 'fileutils'
 
+directory '/app'
 environment 'production'
 bind 'unix:///tmp/puma.sock'
 
