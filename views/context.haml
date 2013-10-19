@@ -1,8 +1,8 @@
 %section.container
   .row.page-headline
     .col-lg-12.text-center
-      %h1 Trusted PHP Developers. Rated, Reviewed, Tested.
-      %h3 Find the right PHP Developer in <strong>3 easy steps</strong>
+      %h1 Trusted #{@ct}. Rated, Reviewed, Tested.
+      %h3 Find the right #{@ct_singular} in <strong>3 easy steps</strong>
   .row
     .steps.col-lg-12.text-center
       .step-block.block-1
@@ -38,7 +38,7 @@
 %section.form-section
   .container
     .form-headline
-      %h1 Get PHP Programmer Applications Fast
+      %h1 Get #{@ct_singular} Applications Fast
     .row
       .col-lg-6.col-lg-offset-3
         %form.form{action: '/send', method: 'post'}

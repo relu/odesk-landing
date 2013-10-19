@@ -33,8 +33,15 @@ class ODLanding < Sinatra::Base
     set :cache_output_dir, "#{public_folder}/cache"
   end
 
-  get '/:context' do
-    #@context = Context.find_by_name(params[:context])
+  get '/' do
+    @ct = Rack::Utils.escape_html(params[:ct])
+    @ct_singular = @ct.gsub(/s$/, '')
+    @query = Rack::Utils.escape_html(params[:query])
+    @skill = Rack::Utils.escape_html(params[:skill])
+    @subcategory = Rack::Utils.escape_html(params[:subcategory])
+    @hi = Rack::Utils.escape_html(params[:hi])
+    @title = Rack::Utils.escape_html(params[:title])
+
     haml :context
   end
 
