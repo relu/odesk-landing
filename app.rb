@@ -6,6 +6,7 @@ require 'mail'
 require 'logger'
 require 'sass/plugin/rack'
 require 'rack/coffee'
+require 'haml'
 
 class ODLanding < Sinatra::Base
 
