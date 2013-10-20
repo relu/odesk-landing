@@ -62,4 +62,10 @@ $ ->
         tileContainer.removeClass('transitioning')
         tiles.removeClass('fast')
 
+  scrollCount = ->
+    input = $('[name=scroll_count]')
+    $('.right-arrow, .left-arrow').click ->
+     input.val parseInt(input.val()) + 1
+
   carousel()
+  scrollCount()

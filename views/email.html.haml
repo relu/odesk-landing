@@ -1,0 +1,93 @@
+!!!
+%html{xmlns: 'http://www.w3.org/1999/xhtml'}
+%head
+  %meta{name: 'viewport', content: 'width=device-width'}
+  %meta{:'http-equiv' => 'Content-Type', content: 'text/html; charset=UTF-8'}
+
+  %title oDesk Landing Page Submission
+
+  :css
+    = File.read("#{settings.public_folder}/css/email.css")
+
+%body{bgcolor: '#FFFFFF'}
+  %table.head-wrap{bgcolor: '#999999'}
+    %tr
+      %td
+      %td.header.container
+        .content
+          %h1 oDesk Landing Project Submission
+
+  %table.body-wrap
+    %tr
+      %td
+
+      %td.container{bgcolor: '#FFFFFF'}
+        .content
+          %table
+            %tr
+              %td
+                %h3 Submission
+                %table{border: 1, cellpadding: 5}
+                  %tr
+                    %th Project Title
+                    %td= @title
+                  %tr
+                    %th Project Desc
+                    %td= @desc
+
+            %tr
+              %td
+                %h3 Query Information
+                %table{border: 1, cellpadding: 5}
+                  %tr
+                    %th query
+                    %td= session[:query]
+                  %tr
+                    %th title
+                    %td= session[:title]
+                  %tr
+                    %th skill
+                    %td= session[:skill]
+                  %tr
+                    %th subcategory
+                    %td= session[:subcat]
+                  %tr
+                    %th q param
+                    %td= "q=#{session[:q]}"
+                  %tr
+                    %th hl keyword
+                    %td= session[:keyword]
+
+            %tr
+              %td
+                %h3 Visit Information
+                %table{border: 1, cellpadding: 5}
+                  %tr
+                    %th Landing URL
+                    %td= session[:url]
+                  %tr
+                    %th Referrer URL
+                    %td= session[:referrer]
+                  %tr
+                    %th Visit Timestamp
+                    %td= session[:visit_timestamp]
+                  %tr
+                    %th Submission Timestamp
+                    %td= Time.now.to_s
+                  %tr
+                    %th Client IP Address
+                    %td= session[:ip]
+                  %tr
+                    %th Scroll Count
+                    %td= @scroll_count
+
+  %table.footer-wrap
+    %tr
+      %td
+
+      %td.container
+        .content
+          %table
+            %tr
+              %td{align: 'center'}
+                %p

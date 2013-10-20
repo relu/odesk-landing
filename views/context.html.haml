@@ -52,12 +52,13 @@
             %input#title.form-control{name: 'title', type: 'text', placeholder: 'Ex. Build a website'}
           .form-group
             %label{for: 'desc'} Describe what you want done
-            %textarea#desc.form-control{name: 'title', rows: 7, placeholder: "Enter details about your project and the skills you are looking for. (must be at least 50 characters)"}
+            %textarea#desc.form-control{name: 'desc', rows: 7, placeholder: "Enter details about your project and the skills you are looking for. (must be at least 50 characters)"}
           .form-group
             %label{for: 'email'} Enter your email
             %input#email.form-control{name: 'email', type: 'email'}
           .form-group.text-center
             = csrf_tag
+            %input{type: 'hidden', name: 'scroll_count', value: 0}
             %input.btn.btn-lg.btn-submit{type: 'submit', value: 'Get Applicants Fast'}
             %p
               %em.terms

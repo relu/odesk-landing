@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
+require 'sinatra/respond_to'
 require 'rack/csrf'
 require 'mail'
 require 'logger'
@@ -20,6 +21,7 @@ class ODLanding < Sinatra::Base
 
     use Rack::Csrf, :raise => true
     use Rack::Coffee, root: public_folder, urls: '/js'
+    register Sinatra::RespondTo
   end
 
   configure :development do
@@ -38,12 +40,19 @@ class ODLanding < Sinatra::Base
   end
 
   get %r{/(:?o/landing(:?S\d?)?)?} do
-    query = Rack::Utils.escape_html(params[:query])
-    skill = Rack::Utils.escape_html(params[:skill])
-    subcategory = Rack::Utils.escape_html(params[:subcategory])
-    title = Rack::Utils.escape_html(params[:title])
+    query = session[:query] = Rack::Utils.escape_html(params[:query])
+    skill = session[:skill] = Rack::Utils.escape_html(params[:skill])
+    subcategory = session[:subcat] = Rack::Utils.escape_html(params[:subcategory])
+    title = session[:title] = Rack::Utils.escape_html(params[:title])
 
-    @profiles = OApi.profiles(query, title, skill, subcategory)
+    session[:url] = request.url
+    session[:referrer] = request.referrer
+    session[:ip] = request.ip
+    session[:visit_timestamp] = Time.now.to_s
+
+    q = session[:q] = OApi.build_q(query, title, skill, subcategory)
+
+    @profiles = OApi.profiles(q)
     @keyword = if !query.nil?
                  query
                elsif !title.nil?
@@ -58,24 +67,31 @@ class ODLanding < Sinatra::Base
   end
 
   post '/send' do
-    title = Rack::Utils.escape_html(params[:title])
-    desc = Rack::Utils.escape_html(params[:desc])
+    @title = Rack::Utils.escape_html(params[:title])
+    @desc = Rack::Utils.escape_html(params[:desc])
+    @scroll_count = Rack::Utils.escape_html(params[:scroll_count]).to_i
     email = params[:email]
+
+    body_html = haml(:email, layout: false)
 
     Mail.deliver do
       from      email
-      to        'relu@localhost'
+      to        'aurelcanciu@odesk.com'
       subject   'Landing page submission'
 
       text_part do
-        body "Title: #{title}\nDescription: #{desc}"
+        body "Title: #{@title}\nDescription: #{@desc}"
       end
 
       html_part do
         content_type 'text/html; charset=UTF-8'
-        # probably need to render mailer view here
-        body haml(:email, layout: false)
+        body body_html
       end
+    end
+
+    respond_to do |format|
+      format.html { redirect to(:/) }
+      format.json { {success: 1}.to_json }
     end
   end
 
