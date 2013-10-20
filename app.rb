@@ -52,7 +52,7 @@ class ODLanding < Sinatra::Base
     haml :context
   end
 
-  get %r{/o/landing(S\d?)?} do
+  get %r{/o/landing(?:S\d?)?} do
     query = params.map { |key, value| "#{key}=#{value}" }.join("&")
     redirect to("/?#{query}")
   end
