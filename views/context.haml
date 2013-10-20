@@ -1,11 +1,7 @@
 %section.container
   .row.page-headline
     .col-lg-12.text-center
-      %h1
-        - unless @ct.nil? or @ct.blank?
-          Trusted #{@ct}. Rated, Reviewed, Tested.
-        - else
-          #{@keyword.capitalize} Freelancers
+      %h1 Trusted #{@ct}. Rated, Reviewed, Tested.
 
       %h3 Find the right #{@ct_singular} in <strong>3 easy steps</strong>
   .row

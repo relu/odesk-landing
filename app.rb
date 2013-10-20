@@ -33,6 +33,7 @@ class ODLanding < Sinatra::Base
 
   get '/' do
     @ct = Rack::Utils.escape_html(params[:ct])
+    @ct = "Freelancers" if @ct.nil? or @ct.blank?
     @ct_singular = @ct.gsub(/s$/, '')
     query = Rack::Utils.escape_html(params[:query])
     skill = Rack::Utils.escape_html(params[:skill])
