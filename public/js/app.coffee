@@ -13,7 +13,7 @@ $ ->
       self.animate left: self.position().left+'px', 'slow', ->
         self.css(position: 'absolute')
 
-    if $('.tile').length > 5
+    if tileLength > 5
       $('.right-arrow').removeClass('disabled')
 
     $('.left-arrow, .right-arrow').click (evt)->
@@ -21,8 +21,13 @@ $ ->
 
       self = $(this)
 
+      if tileContainer.hasClass('transitioning')
+        return false
+
       if self.hasClass('disabled')
         return false
+
+      tileContainer.addClass('transitioning')
 
       if self.hasClass('right-arrow')
         tiles.each ->
@@ -38,5 +43,9 @@ $ ->
 
           if tiles.eq(0).position().left == -tileWidth
             $('.left-arrow').addClass('disabled')
+
+    tiles.on 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', ->
+      if tileContainer.hasClass('transitioning')
+        tileContainer.removeClass('transitioning')
 
   carousel()
