@@ -31,7 +31,7 @@ class ODLanding < Sinatra::Base
     set :server, :puma
   end
 
-  get '/' do
+  get %r{/(:?o/landing(:?S\d?)?)?} do
     @ct = Rack::Utils.escape_html(params[:ct])
     @ct = "Freelancers" if @ct.nil? or @ct.blank?
     @ct_singular = @ct.gsub(/s$/, '')
