@@ -257,8 +257,20 @@ textarea {
     transition: all .6s ease-in-out;
     -webkit-transition: all .6s ease-in-out;
 
-    &.sign-up {
+    &.cta {
       height: 341px;
+      background: white url('../images/tile-CTA-icon.svg') no-repeat center 55px;
+
+      .content {
+        font-size: 24px;
+        line-height: 28px;
+        color: rgb(0, 173, 239);
+        text-align: center;
+        top: 161px;
+        padding: 7px;
+        width: 224px;
+        position: relative;
+      }
     }
 
     article {
