@@ -20,6 +20,8 @@ class OApi
 
     response = get('/*/profiles.json', query: { data: data.to_json })
 
+    return [] if response["proxy"].nil? || response["proxy"]["data"].nil?
+
     [].tap do |profiles|
       response["proxy"]["data"].each do |p|
         profile = p["data"]

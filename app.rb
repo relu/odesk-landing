@@ -90,7 +90,7 @@ class ODLanding < Sinatra::Base
 
     def highlight(text, keyword)
       return text if keyword.nil? or keyword == ''
-      text.gsub(/(#{keyword})/i, "<strong>\\1</strong>")
+      text.to_s.gsub(/(#{keyword})/i, "<strong>\\1</strong>")
     end
   end
 
