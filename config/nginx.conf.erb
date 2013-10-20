@@ -36,7 +36,7 @@ http {
 				root /app/public;
 
                 location / {
-					try_files $uri /cache/$uri /cache$uri.html /cache$uri/index.html @app;
+					try_files $uri $uri/ $uri/index.html @app;
 				}
 
 				location @app {
