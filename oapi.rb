@@ -7,6 +7,7 @@ class OApi
   base_uri 'https://www.odesk.com/api/o2/v1/search'
 
   def self.profiles(query=nil, title=nil, skill=nil)
+    q = ''
     q = "#{query} " unless query.nil? or query.blank?
     q += "title:#{title} " unless title.nil? or title.blank?
     q += "skills:#{skill}" unless skill.nil? or skill.blank?
