@@ -1,3 +1,15 @@
+@import "_fonts";
+
+$font-adelle-sb: "Adelle_Semibold";
+$font-adelle-sbi: "Adelle_SemiBoldItalic";
+$font-adelle-r: "Adelle_Regular";
+$font-adelle-i: "Adelle_Italic";
+$font-adelle-bi: "Adelle_BoldItalic";
+
+body {
+  font-family: HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', sans-serif;
+}
+
 h1, h2, h3 {
   color: #545454;
 }
@@ -42,6 +54,7 @@ hr {
 .page-headline {
   h1 {
     font-size: 40px;
+    font-family: $font-adelle-r;
   }
 
   h3 {
@@ -159,6 +172,7 @@ hr {
 
     h1 {
       font-style: italic;
+      font-family: $font-adelle-sbi;
       font-size: 26px;
       color: white;
       text-align: center;
@@ -434,6 +448,13 @@ textarea {
   background: #f0f0f0;
   padding: 20px 0;
   color: #6e6e6e;
+  font-family: $font-adelle-i;
+
+  em { font-style: normal; }
+
+  strong {
+    font-family: $font-adelle-bi;
+  }
 
   img { max-width: 100%; }
 
@@ -450,6 +471,7 @@ textarea {
   blockquote {
     margin: 0 60px;
     overflow: hidden;
+    font-family: $font-adelle-sb;
   }
 }
 
