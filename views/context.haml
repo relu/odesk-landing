@@ -94,7 +94,7 @@
                 .name= profile[:name]
                 .country= profile[:country]
               .rate
-                .dollars $#{profile[:rate]}
+                .dollars $#{'%.2f' % profile[:rate].to_f}
                 .label hourly rate
 
       %li.tile.cta
