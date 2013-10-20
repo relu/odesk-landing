@@ -35,6 +35,8 @@ http {
 
 				root /app/public;
 
+				rewrite ^/o/landing(S[0-9]+?)? / permanent;
+
                 location / {
 					try_files $uri $uri/index.html @app;
 				}

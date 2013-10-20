@@ -54,11 +54,6 @@ class ODLanding < Sinatra::Base
     haml :context
   end
 
-  get %r{/o/landing(?:S\d?)?} do
-    query = params.map { |key, value| "#{key}=#{value}" }.join("&")
-    redirect to("/?#{query}")
-  end
-
   post '/send' do
     title = Rack::Utils.escape_html(params[:title])
     desc = Rack::Utils.escape_html(params[:desc])
