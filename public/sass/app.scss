@@ -203,9 +203,14 @@ textarea {
     display: block;
     position: absolute;
     top: 183px;
+    -moz-transition: opacity .6s ease-in-out;
+    -webkit-transition: opacity .6s ease-in-out;
+    -ms-transition: opacity .6s ease-in-out;
+    transition: opacity .6s ease-in-out;
 
     &.disabled {
       cursor: default;
+      opacity: .5;
     }
 
     &.left-arrow {
