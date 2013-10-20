@@ -29,7 +29,13 @@ $ ->
 
       tileContainer.addClass('transitioning')
 
+      firstTile = tiles.first()
+      ftIndex = -firstTile.position().left / tileWidth
+
       if self.hasClass('right-arrow')
+        ftTile = tiles.eq(ftIndex)
+        ftTile.addClass('fast')
+
         tiles.each ->
           $(this).css left: $(this).position().left - tileWidth
           $('.left-arrow').removeClass('disabled')
@@ -37,6 +43,9 @@ $ ->
           if tiles.eq(0).position().left == -tileWidth * (tileLength - 6)
             $('.right-arrow').addClass('disabled')
       else
+        ftTile = tiles.eq(ftIndex + 4)
+        ftTile.addClass('fast')
+
         tiles.each (idx)->
           $(this).css left: $(this).position().left + tileWidth
           $('.right-arrow').removeClass('disabled')
@@ -47,5 +56,6 @@ $ ->
     tiles.on 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', ->
       if tileContainer.hasClass('transitioning')
         tileContainer.removeClass('transitioning')
+        tiles.removeClass('fast')
 
   carousel()
