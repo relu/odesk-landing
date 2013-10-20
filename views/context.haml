@@ -63,8 +63,34 @@
                 %a{href: '#'} Privacy Policy
 
 %section.contractors
-  .container
-    .wrapper
+  .wrapper
+    .nav
+      %a.left-arrow.disabled{href: '#'}
+      %a.right-arrow.disabled{href: '#'}
+    %ul.tiles
+      - @profiles.each do |profile|
+        %li.tile
+          %article
+            %header
+              %h3= highlight(profile[:title], @keyword)
+            .profile
+              .desc
+                %p= highlight(profile[:desc], @keyword)
+              .skills
+                - profile[:skills].each do |skill|
+                  %span= skill
+            %footer
+              %img.image{src: profile[:portrait_50], alt: profile[:name]}
+              .info
+                .first-name= profile[:name]
+                .last-name
+                .country= profile[:country]
+              .rate
+                .dollars $#{profile[:rate]}
+                .label hourly rate
+
+      %li.tile.sign-up
+
   .stats
     .container
       .row

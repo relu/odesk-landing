@@ -196,9 +196,38 @@ textarea {
   height: 475px;
   position: relative;
 
+  .nav a {
+    background: url('../images/arrows.png') no-repeat;
+    width: 16px;
+    height: 26px;
+    display: block;
+    position: absolute;
+    top: 183px;
+
+    &.disabled {
+      cursor: default;
+    }
+
+    &.left-arrow {
+      background-position: 0 0;
+      left: 40px;
+
+      &.disabled { background-position: 0 -26px; }
+    }
+
+    &.right-arrow {
+      background-position: -16px 0;
+      right: 40px;
+
+      &.disabled { background-position: -16px -26px; }
+    }
+  }
+
   .wrapper {
-    max-width: 1222px;
+    max-width: 1230px;
+    height: 341px;
     margin: 0 auto;
+    overflow: hidden;
   }
 
   .stats {
@@ -208,6 +237,158 @@ textarea {
     height: 183px;
     bottom: 0;
   }
+
+  .tiles {
+    position: relative;
+    z-index: 100;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .tile {
+    width: 236px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.298039) 0px 2px 2.91px 0.09px;
+    position: relative;
+    margin: 0 5px;
+    float: left;
+    transition: all .6s ease-in-out;
+    -webkit-transition: all .6s ease-in-out;
+
+    &.sign-up {
+      height: 341px;
+    }
+
+    article {
+      height: 100%;
+    }
+
+    header {
+      background: rgb(0, 173, 239);
+      border-radius: 5px 5px 0px 0px;
+      border-bottom: 1px solid rgb(0, 173, 239);
+      height: 88px;
+      padding: 15px 15px 0;
+    }
+
+    footer {
+      background: #f0f0f0;
+      padding: 10px 15px;
+      box-shadow: rgb(255, 255, 255) 0px 1px 0px 0px;
+      border-radius: 0 0 5px 5px;
+    }
+
+    h3 {
+      width: 210px;
+      font-size: 18px;
+      line-height: 21px;
+      text-shadow: rgba(10, 99, 144, 0.298039) 0px -1px 0px;
+      color: white;
+      height: 65px;
+      word-wrap: break-word;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin: 0;
+    }
+  }
+
+  .profile {
+    height: 181px;
+
+    .desc {
+      padding: 8px 15px 0px;
+
+      p {
+        font-size: 11px;
+        line-height: 15px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 75px;
+        width: 210px;
+        word-wrap: break-word;
+      }
+    }
+
+    .skills {
+      padding: 5px 15px 0px;
+      overflow: hidden;
+      height: 60px;
+
+      span {
+        background-color: rgb(242, 242, 242);
+        color: rgb(124, 124, 122);
+        padding: 4px 7px;
+        border-radius: 4px;
+        margin-right: 2px;
+        margin-top: 5px;
+        font-size: 11px;
+        line-height: 1.4;
+        display: inline-block;
+      }
+    }
+  }
+
+  .image {
+    border: 1px solid rgb(220, 220, 220);
+    width: 52px;
+    height: 52px;
+    display: inline-block;
+    margin-right: 7px;
+    vertical-align: top;
+  }
+
+  .info {
+    display: inline-block;
+    width: 83px;
+
+    .first-name, .last-name {
+      color: black;
+      display: block;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 16px;
+    }
+
+    .country {
+      font-weight: normal;
+      font-size: 11px;
+      color: rgb(124, 124, 122);
+    }
+  }
+
+  .rate {
+    margin-top: 6px;
+    display: inline-block;
+
+    .dollars {
+      font-weight: bold;
+      font-size: 18px;
+      text-align: right;
+      padding-top: 6px;
+    }
+
+    .label {
+      font-weight: normal;
+      font-size: 8px;
+      color: rgb(124, 124, 122);
+      text-align: right;
+      text-transform: uppercase;
+      padding: 1px 0 0;
+      display: block;
+    }
+  }
+}
+
+@keyframes carousel {
+  from { left: 0; position: absolute; }
+  to { position: relative; }
+}
+
+@-webkit-keyframes carousel {
+  from { width: 0;}
+  to { width: 100%;}
 }
 
 .featured-clients {
