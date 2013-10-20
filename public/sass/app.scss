@@ -230,7 +230,7 @@ textarea {
 
   .wrapper {
     max-width: 1230px;
-    height: 341px;
+    height: 345px;
     margin: 0 auto;
     overflow: hidden;
   }
@@ -249,6 +249,13 @@ textarea {
     list-style-type: none;
     padding: 0;
     margin: 0;
+
+    &.slow .tile {
+      -moz-transition: all 2s ease-in-out;
+      -webkit-transition: all 2s ease-in-out;
+      -ms-transition: all 2s ease-in-out;
+      transition: all 2s ease-in-out;
+    }
   }
 
   .tile {
@@ -288,10 +295,6 @@ textarea {
       }
     }
 
-    article {
-      height: 100%;
-    }
-
     header {
       background: rgb(0, 173, 239);
       border-radius: 5px 5px 0px 0px;
@@ -305,6 +308,7 @@ textarea {
       padding: 10px 15px;
       box-shadow: rgb(255, 255, 255) 0px 1px 0px 0px;
       border-radius: 0 0 5px 5px;
+      border-top: 1px solid rgb(220, 220, 220);
     }
 
     h3 {

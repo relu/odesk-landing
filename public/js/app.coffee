@@ -5,7 +5,9 @@ $ ->
     tileWidth = tiles.outerWidth() + 10
     tileLength = tiles.length
 
-    tileContainer.width(tileWidth * tileLength+"px")
+    tileContainer
+      .addClass('slow')
+      .width(tileWidth * tileLength+"px")
 
     tiles.each ->
       self = $(this)
@@ -18,6 +20,8 @@ $ ->
 
     $('.left-arrow, .right-arrow').click (evt)->
       evt.preventDefault()
+
+      tileContainer.removeClass('slow')
 
       self = $(this)
 
