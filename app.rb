@@ -1,6 +1,5 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
-require 'sinatra/cache'
 require 'rack/csrf'
 require 'mail'
 require 'logger'
@@ -30,9 +29,6 @@ class ODLanding < Sinatra::Base
 
   configure :production do
     set :server, :puma
-    register Sinatra::Cache
-    enable :cache_enabled
-    set :cache_output_dir, "#{public_folder}/cache"
   end
 
   get '/' do
