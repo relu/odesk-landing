@@ -57,7 +57,7 @@ $ ->
           if tiles.eq(0).position().left == -tileWidth
             $('.left-arrow').addClass('disabled')
 
-    tiles.on 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', ->
+    tiles.not('.fast').on 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', ->
       if tileContainer.hasClass('transitioning')
         tileContainer.removeClass('transitioning')
         tiles.removeClass('fast')
