@@ -8,13 +8,15 @@ require 'sass/plugin/rack'
 require 'rack/coffee'
 require 'haml'
 
+require './oapi.rb'
+
 class ODLanding < Sinatra::Base
 
   configure do
     enable :sessions
     Sass::Plugin.options[:style] = :compressed
-    Sass::Plugin.options[:css_location] = "#{public_folder}/public/css"
-    Sass::Plugin.options[:template_location] = "#{public_folder}/public/sass"
+    Sass::Plugin.options[:css_location] = "#{public_folder}/css"
+    Sass::Plugin.options[:template_location] = "#{public_folder}/sass"
     use Sass::Plugin::Rack
 
     use Rack::Csrf, :raise => true
@@ -36,11 +38,20 @@ class ODLanding < Sinatra::Base
   get '/' do
     @ct = Rack::Utils.escape_html(params[:ct])
     @ct_singular = @ct.gsub(/s$/, '')
-    @query = Rack::Utils.escape_html(params[:query])
-    @skill = Rack::Utils.escape_html(params[:skill])
-    @subcategory = Rack::Utils.escape_html(params[:subcategory])
-    @hi = Rack::Utils.escape_html(params[:hi])
-    @title = Rack::Utils.escape_html(params[:title])
+    query = Rack::Utils.escape_html(params[:query])
+    skill = Rack::Utils.escape_html(params[:skill])
+    subcategory = Rack::Utils.escape_html(params[:subcategory])
+    hi = Rack::Utils.escape_html(params[:hi])
+    title = Rack::Utils.escape_html(params[:title])
+
+    @profiles = OApi.profiles(query, title, skill)
+    @keyword = if !query.nil?
+                 query
+               elsif !title.nil?
+                 title
+               elsif !skill.nil?
+                 skill
+               end
 
     haml :context
   end
@@ -74,6 +85,11 @@ class ODLanding < Sinatra::Base
 
     def csrf_tag
       Rack::Csrf.csrf_tag(env)
+    end
+
+    def highlight(text, keyword)
+      return text if keyword.nil? or keyword == ''
+      text.gsub(/(#{keyword})/i, "<strong>\\1</strong>")
     end
   end
 

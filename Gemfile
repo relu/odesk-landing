@@ -11,3 +11,8 @@ gem 'rack-coffee'
 gem 'rack_csrf'
 gem 'mail'
 gem 'puma'
+gem 'httparty'
+
+group :development do
+  gem 'pry'
+end

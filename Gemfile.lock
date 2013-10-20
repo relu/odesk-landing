@@ -2,6 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     backports (3.3.5)
+    coderay (1.0.9)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
@@ -9,12 +10,22 @@ GEM
     execjs (2.0.2)
     haml (4.0.3)
       tilt
+    httparty (0.12.0)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
+    json (1.8.1)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    method_source (0.8.2)
     mime-types (1.25)
     multi_json (1.8.2)
+    multi_xml (0.5.5)
     polyglot (0.3.3)
+    pry (0.9.12.2)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.4)
     puma (2.6.0)
       rack (>= 1.1, < 2.0)
     rack (1.5.2)
@@ -44,6 +55,7 @@ GEM
       tilt (~> 1.3)
     sinatra-outputbuffer (0.1.0)
       sinatra (>= 1.0.a)
+    slop (3.4.6)
     tilt (1.4.1)
     treetop (1.4.15)
       polyglot
@@ -54,7 +66,9 @@ PLATFORMS
 
 DEPENDENCIES
   haml
+  httparty
   mail
+  pry
   puma
   rack-coffee
   rack_csrf
