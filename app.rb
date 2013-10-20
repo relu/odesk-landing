@@ -7,7 +7,7 @@ require 'sass/plugin/rack'
 require 'rack/coffee'
 require 'haml'
 
-require './oapi.rb'
+require './lib/oapi.rb'
 
 class ODLanding < Sinatra::Base
 
