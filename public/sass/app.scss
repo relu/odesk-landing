@@ -381,14 +381,20 @@ textarea {
   }
 }
 
-@keyframes carousel {
-  from { left: 0; position: absolute; }
-  to { position: relative; }
-}
+.stats {
+  padding-top: 90px;
+  color: #1f5b05;
+  font-size: 19px;
+  text-shadow: 0 1px 0 #76b14b;
+  line-height: 1.2;
 
-@-webkit-keyframes carousel {
-  from { width: 0;}
-  to { width: 100%;}
+  strong {
+    display: block;
+    color: white;
+    font-size: 38px;
+    font-weight: bold;
+    text-shadow: 0 1px 1px #3c791a;
+  }
 }
 
 .featured-clients {
