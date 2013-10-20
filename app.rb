@@ -37,16 +37,17 @@ class ODLanding < Sinatra::Base
     query = Rack::Utils.escape_html(params[:query])
     skill = Rack::Utils.escape_html(params[:skill])
     subcategory = Rack::Utils.escape_html(params[:subcategory])
-    hi = Rack::Utils.escape_html(params[:hi])
     title = Rack::Utils.escape_html(params[:title])
 
-    @profiles = OApi.profiles(query, title, skill)
+    @profiles = OApi.profiles(query, title, skill, subcategory)
     @keyword = if !query.nil?
                  query
                elsif !title.nil?
                  title
                elsif !skill.nil?
                  skill
+               elsif !subcategory.nil?
+                 subcategory
                end
 
     haml :context
@@ -60,11 +61,11 @@ class ODLanding < Sinatra::Base
   post '/send' do
     title = Rack::Utils.escape_html(params[:title])
     desc = Rack::Utils.escape_html(params[:desc])
-    email = Rack::Utils.escape_email(params[:email])
+    email = params[:email]
 
     Mail.deliver do
       from      email
-      to        'example@localhost'
+      to        'relu@localhost'
       subject   'Landing page submission'
 
       text_part do
@@ -74,7 +75,7 @@ class ODLanding < Sinatra::Base
       html_part do
         content_type 'text/html; charset=UTF-8'
         # probably need to render mailer view here
-        body "Title: #{title}\nDescription: #{desc}"
+        body haml(:email, layout: false)
       end
     end
   end
