@@ -31,10 +31,13 @@ class ODLanding < Sinatra::Base
     set :server, :puma
   end
 
-  get %r{/(:?o/landing(:?S\d?)?)?} do
+  before do
     @ct = Rack::Utils.escape_html(params[:ct])
     @ct = "Freelancers" if @ct.nil? or @ct.blank?
     @ct_singular = @ct.gsub(/s$/, '')
+  end
+
+  get %r{/(:?o/landing(:?S\d?)?)?} do
     query = Rack::Utils.escape_html(params[:query])
     skill = Rack::Utils.escape_html(params[:skill])
     subcategory = Rack::Utils.escape_html(params[:subcategory])
