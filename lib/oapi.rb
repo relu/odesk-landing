@@ -15,7 +15,6 @@ class OApi
 
     data = {
       q: q,
-      hl: 1,
       paging: '0;20'
     }
 
