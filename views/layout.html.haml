@@ -11,6 +11,9 @@
 
     %link{rel: 'stylesheet', href: '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css'}
     %link{rel: 'stylesheet', href: '/css/app.css'}
+
+    = haml :_mixpanel, layout: false
+
   %body.oLanding
 
     %header.page-header.text-center{role: 'banner'}
@@ -44,4 +47,4 @@
     %script{src: '//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js'}
     %script{src: '/js/app.js'}
 
-    :javascript
+    %script{src: "//cdn.optimizely.com/js/#{settings.optimizely_token}.js"}

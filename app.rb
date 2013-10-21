@@ -22,6 +22,9 @@ class ODLanding < Sinatra::Base
     use Rack::Csrf, :raise => true
     use Rack::Coffee, root: public_folder, urls: '/js'
     register Sinatra::RespondTo
+
+    set :optimizely_token, '275553376'
+    set :mixpanel_token, 'fdf88b8da1749bafc5f24aee259f5aa4'
   end
 
   configure :development do
