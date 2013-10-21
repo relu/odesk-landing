@@ -3,56 +3,43 @@
     .col-lg-12.text-center
       %h1 Trusted #{@ct}. Rated, Reviewed, Tested.
 
-      %h3 Find the right #{@ct_singular} in <strong>3 easy steps</strong>
-  .row
-    .steps.col-lg-12.text-center
-      .step-block.block-1
-        .flipper
-          .front
-            %i.icon
-            %span
-              %strong.num 1.
-              Post a Job
-          .back
-            %p
-              Our time-tracking tools provide full visibility into your
-              project's progress, so you'll know you're only paying for
-              being done.
-      .step-block.block-2
-        .flipper
-          .front
-            %i.icon
-            %span
-              %strong.num 2.
-              Review Applicants
-          .back
-            %p
-              Peruse applicant portfolios and pick the most qualified
-              candidates for your project.
-      .step-block.block-3
-        .flipper
-          .front
-            %i.icon
-            %span
-              %strong.num 3.
-              Hire Right Away
-          .back
-            %p
-              Hire your favorite candidate with a few quick clicks!
-
 %section.form-section
   .container
-    .form-headline
-      %h1 Get #{@ct_singular} Applications Fast
     .row
-      .col-lg-6.col-lg-offset-3
+      .col-lg-5.col-lg-offset-1.steps
+        %h3 Find the right #{@ct_singular}<br>in 3 easy steps:
+        %ul
+          %li.block-1
+            %span
+              %i.icon
+            <strong>1.</strong> Post a Job
+          %li.block-2
+            %span
+              %i.icon
+            <strong>2.</strong> Review Applicants
+          %li.block-2
+          %li.block-3
+            %span
+              %i.icon
+            <strong>3.</strong> Hire Right Away!
+
+        %hr/
+
+        .testimonial
+          %blockquote
+            %p "We wanted to ramp up quickly with the best people. Our bookkeepers,<br> developers, designers, customer support &mdash; everything is through oDesk."
+            %small.author.pull-right Jay Shapiro // Founder of Infinite Monkeys
+
+      .col-lg-5.the-form
+        .form-headline
+          %h1 Get #{@ct_singular} Applications Fast
         %form.form{action: '/send', method: 'post'}
           .form-group
             %label{for: 'title'} Give your project a title
             %input#title.form-control{name: 'title', type: 'text', placeholder: 'Ex. Build a website'}
           .form-group
             %label{for: 'desc'} Describe what you want done
-            %textarea#desc.form-control{name: 'desc', rows: 7, placeholder: "Enter details about your project and the skills you are looking for. (must be at least 50 characters)"}
+            %textarea#desc.form-control{name: 'desc', rows: 9, placeholder: "Enter details about your project and the skills you are looking for. (must be at least 50 characters)"}
           .form-group
             %label{for: 'email'} Enter your email
             %input#email.form-control{name: 'email', type: 'email'}

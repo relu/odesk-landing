@@ -1,5 +1,6 @@
 @import "_fonts";
 
+$font-base: HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', sans-serif;
 $font-adelle-sb: "Adelle_Semibold";
 $font-adelle-sbi: "Adelle_SemiBoldItalic";
 $font-adelle-r: "Adelle_Regular";
@@ -7,7 +8,7 @@ $font-adelle-i: "Adelle_Italic";
 $font-adelle-bi: "Adelle_BoldItalic";
 
 body {
-  font-family: HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', sans-serif;
+  font-family: $font-base;
 }
 
 h1, h2, h3 {
@@ -55,111 +56,79 @@ hr {
   h1 {
     font-size: 40px;
     font-family: $font-adelle-r;
-  }
-
-  h3 {
-    font-size: 18px;
+    margin-bottom: 64px;
   }
 }
 
 /* Steps */
 .steps {
-  margin: 50px 0;
-}
+  padding-right: 90px;
 
-.step-block {
-  height: 240px;
-  width: 240px;
-  margin: 0 7px;
-  display: inline-block;
-  -moz-perspective: 1000;
-  -webkit-perspective: 1000;
-  -ms-perspective: 1000;
-  perspective: 1000;
-
-  .flipper {
-    -moz-transition: 0.6s;
-    -webkit-transition: 0.6s;
-    -ms-transition: 0.6s;
-    transition: 0.6s;
-    -moz-transform-style: preserve-3d;
-    -webkit-transform-style: preserve-3d;
-    -ms-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    position: relative;
+  h3 {
+    font-family: $font-adelle-sb;
+    font-size: 24px;
+    color: #5ea32b;
+    margin-bottom: 40px;
   }
 
-  .front, .back {
-    width: 100%;
-    height: 240px;
-    padding: 35px;
-    border-radius: 10px;
-    border: 1px solid #dcdcdc;
-    -moz-backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    -ms-backface-visibility: hidden;
-    backface-visibility: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
   }
 
-  .front {
-    color: white;
+  li {
+    margin-bottom: 40px;
     font-size: 17px;
-    z-index: 2;
+    color: #545454;
 
-    .num {
-      font-size: 24px;
+    span {
+      width: 86px;
+      height: 86px;
+      background: #7bd454;
+      -moz-border-radius: 43px;
+      -webkit-border-radius: 43px;
+      -ms-border-radius: 43px;
+      border-radius: 43px;
+      display: inline-block;
+      text-align: center;
+      line-height: 86px;
+      margin-right: 20px;
     }
+
+    .icon {
+      background: url('../images/steps-icons.png') no-repeat;
+      width: 42px;
+      height: 36px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    &.block-1 .icon { background-position: 0 0; }
+    &.block-2 .icon { background-position: 0 -36px; }
+    &.block-3 .icon { background-position: 0 -72px; }
+
+    strong { font-size: 24px; }
   }
 
-  .back {
-    color: white;
-    background: #7bd454;
-    font-size: 16px;
-    -moz-transform: rotateY(180deg);
-    -webkit-transform: rotateY(180deg);
-    -ms-transform: rotateY(180deg);
-    transform: rotateY(180deg);
-  }
-
-  &:hover .flipper {
-    -moz-transform: rotateY(180deg);
-    -webkit-transform: rotateY(180deg);
-    -ms-transform: rotateY(180deg);
-    transform: rotateY(180deg);
-  }
-
-  .icon {
-    background: url('../images/steps-icons.png') no-repeat;
-    width: 86px;
-    height: 73px;
-    display: block;
-    margin: 15px auto 38px;
-  }
-
-  &.block-1 {
-    .icon { background-position: 0 0; }
-    .front { background-color: #8a1669; }
-  }
-
-  &.block-2 {
-    .icon { background-position: 0 -73px; }
-    .front { background-color: #f33a35; }
-  }
-
-  &.block-3 {
-    .icon { background-position: 0 -146px; }
-    .front { background-color: #ffb600; }
+  hr {
+    height: 1px;
+    background: #d7d7d3;
+    border: 0;
+    border-bottom: 1px solid white;
+    margin: 0;
   }
 }
 
 /* Form Section */
 .form-section {
   background: #f0f0f0;
-  padding: 135px 0 40px;
   position: relative;
+  padding-bottom: 40px;
+
+  .form-group {
+    margin-bottom: 20px;
+  }
 
   .form-headline {
     background: url('../images/form-headline-bg.png') no-repeat;
@@ -181,8 +150,17 @@ hr {
     }
   }
 
-  form {
-    margin: 0 32px;
+  .the-form {
+    background: white;
+    padding-top: 118px;
+    padding-bottom: 20px;
+    -moz-border-radius: 0 0 15px 15px;
+    -webkit-border-radius: 0 0 15px 15px;
+    -ms-border-radius: 0 0 15px 15px;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 -8px 8px #dedede;
+
+    form { margin: 0 10px; }
   }
 
   .terms {
@@ -468,16 +446,26 @@ textarea {
     max-width: 960px;
     margin: 0 auto;
   }
+
+  .btn-submit {
+    margin-top: 30px;
+  }
 }
 
 .testimonial {
-  min-height: 258px;
-  padding: 36px 0 0;
+  padding: 30px 0 0;
 
   blockquote {
-    margin: 0 48px;
+    padding: 0;
     overflow: hidden;
     font-family: $font-adelle-sb;
+    font-size: 18px;
+    text-shadow: 1px 1px 0 white;
+  }
+
+  .author {
+    text-shadow: none;
+    font-size: 13px;
   }
 }
 
@@ -518,8 +506,9 @@ textarea {
   box-shadow: 0 1px 1px #f9cc6a inset, 0 1px 1px #bb7c00;
   color: #754200 !important;
   text-shadow: 1px 1px 0 #fcca4e;
-  margin: 15px 0;
+  margin: 15px 0 18px;
   outline: 0 !important;
+  font-family: $font-base;
 
   &:active { background: #fab301; }
 }
