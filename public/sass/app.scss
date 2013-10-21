@@ -51,6 +51,8 @@ hr {
   border: 0;
   margin: 0 0 30px;
   line-height: 82px;
+
+  .row { position: relative; }
 }
 
 .page-headline {
@@ -59,6 +61,15 @@ hr {
     font-family: $font-adelle-r;
     margin-bottom: 64px;
   }
+}
+
+.sign-up {
+  color: white !important;
+  position: absolute;
+  top: 10px;
+  right: 90px;
+  line-height: 1;
+  font-size: 14px;
 }
 
 /* Steps */

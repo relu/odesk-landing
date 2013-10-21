@@ -17,8 +17,11 @@
   %body.oLanding
 
     %header.page-header.text-center{role: 'banner'}
-      %a.logo{href: '/'}
-        %img{src: '/images/header-logo.png'}
+      .container
+        .row
+          %a.logo{href: '/'}
+            %img{src: '/images/header-logo.png'}
+          %a.sign-up{href: 'https://www.odesk.com/signup/user-type'} Sign Up
 
     %main.page-main= yield
 
