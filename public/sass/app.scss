@@ -191,7 +191,7 @@ textarea {
 .contractors {
   background: #7bd454;
   padding: 23px 0;
-  height: 475px;
+  height: 534px;
   position: relative;
 
   .nav a {
@@ -237,7 +237,7 @@ textarea {
     background: #5ea32b;
     position: absolute;
     width: 100%;
-    height: 183px;
+    height: 242px;
     bottom: 0;
   }
 
@@ -412,11 +412,12 @@ textarea {
 }
 
 .stats {
-  padding-top: 90px;
+  padding-top: 74px;
   color: #1f5b05;
   font-size: 19px;
   text-shadow: 0 1px 0 #76b14b;
   line-height: 1.2;
+  font-weight: bold;
 
   strong {
     display: block;
@@ -424,6 +425,14 @@ textarea {
     font-size: 38px;
     font-weight: bold;
     text-shadow: 0 1px 1px #3c791a;
+  }
+
+  h2 {
+    color: white;
+    text-shadow: none;
+    font-weight: 100;
+    font-size: 24px;
+    margin-bottom: 20px;
   }
 }
 

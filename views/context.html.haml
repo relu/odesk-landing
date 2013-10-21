@@ -51,9 +51,9 @@
               %em.terms
                 By pressing 'Get Applicants Fast' you confirm that you accept the
                 %br/
-                %a{href: '#'} Terms and Conditions
+                %a{href: 'https://www.odesk.com/info/terms/', target: '_blank'} Terms and Conditions
                 and
-                %a{href: '#'} Privacy Policy
+                %a{href: 'https://www.odesk.com/info/terms/privacy/', target: '_blank'} Privacy Policy
 
 %section.contractors
   .wrapper
@@ -91,6 +91,8 @@
   .stats
     .container
       .row
+        .col-lg-12.text-center
+          %h2 Top #{@ct}
         .col-lg-4.text-center.dev-count
           %strong 2,176
           = @ct
