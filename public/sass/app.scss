@@ -509,6 +509,9 @@ textarea {
 
 .btn-submit {
   background: #fab301;
+  background: -webkit-linear-gradient(#ffc557, #fab301);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc557,', endColorstr='#fab301')";
+  background: linear-gradient(#ffc557, #fab301);
   padding: 15px 30px;
   border: 1px solid #e4a33d;
   border-bottom-color: #7e7502;
@@ -517,4 +520,6 @@ textarea {
   text-shadow: 1px 1px 0 #fcca4e;
   margin: 15px 0;
   outline: 0 !important;
+
+  &:active { background: #fab301; }
 }
