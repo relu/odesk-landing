@@ -32,6 +32,7 @@ class OApi
           name: profile["dev_short_name"],
           country: profile["dev_country"],
           rate: profile["dev_pay_rate"],
+          hash: profile["dev_recno_ciphertext"],
           portrait_50: profile["dev_portrait_50"]
         }
       end
