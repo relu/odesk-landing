@@ -64,7 +64,7 @@ class ODLanding < Sinatra::Base
     q = session[:q] = OApi.build_q(query, title, skill, subcategory)
 
     @profiles = OApi.profiles(q)
-    @keyword = if !query.nil?
+    @keyword = session[:keyword]= if !query.nil?
                  query
                elsif !title.nil?
                  title
