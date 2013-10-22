@@ -67,5 +67,17 @@ $ ->
     $('.right-arrow, .left-arrow').click ->
      input.val parseInt(input.val()) + 1
 
+  formSubmit = ->
+    $('.the-form form').submit ->
+      self = $(this)
+
+      $.post '/send?'+self.serialize(), (content)->
+        console.log content
+        $('.the-form').find('form, h1').fadeOut ->
+          $('.the-form').html(content).fadeIn()
+
+      return false
+
   carousel()
   scrollCount()
+  formSubmit()

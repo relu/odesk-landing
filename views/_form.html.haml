@@ -1,0 +1,23 @@
+.form-headline
+  %h1 Get #{@ct_singular} Applications Fast
+%form.form{action: '/send', method: 'post'}
+  .form-group
+    %label{for: 'title'} Give your project a title
+    %input#title.form-control{name: 'title', type: 'text', placeholder: 'Ex. Build a website'}
+  .form-group
+    %label{for: 'desc'} Describe what you want done
+    %textarea#desc.form-control{name: 'desc', rows: 9, placeholder: "Enter your job details here. Let us know what you want done, the skills you, and your ideal goal or outcome. The more information you provide, the better the applicants you'll get!                     (must be at least 50 characters)"}
+  .form-group
+    %label{for: 'email'} Enter your email
+    %input#email.form-control{name: 'email', type: 'email'}
+  .form-group.text-center
+    = csrf_tag
+    %input{type: 'hidden', name: 'scroll_count', value: 0}
+    %input.btn.btn-lg.btn-submit{type: 'submit', value: 'Get Applicants Fast'}
+    %p
+      %em.terms
+        By pressing 'Get Applicants Fast' you confirm that you accept the
+        %br/
+        %a{href: 'https://www.odesk.com/info/terms/', target: '_blank'} Terms and Conditions
+        and
+        %a{href: 'https://www.odesk.com/info/terms/privacy/', target: '_blank'} Privacy Policy

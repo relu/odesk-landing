@@ -22,6 +22,7 @@ class ODLanding < Sinatra::Base
     use Rack::Csrf, :raise => true
     use Rack::Coffee, root: public_folder, urls: '/js'
     register Sinatra::RespondTo
+    set :assume_xhr_is_js, false
 
     set :optimizely_token, '275553376'
     set :mixpanel_token, 'fdf88b8da1749bafc5f24aee259f5aa4'
@@ -101,7 +102,13 @@ class ODLanding < Sinatra::Base
     end
 
     respond_to do |format|
-      format.html { redirect to(:/) }
+      format.html do
+        if request.xhr?
+          return haml :_confirmation, layout: false
+        end
+
+        redirect to('/?confirmation')
+      end
       format.json { {success: 1}.to_json }
     end
   end
