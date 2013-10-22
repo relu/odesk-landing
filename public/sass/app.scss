@@ -445,6 +445,10 @@ textarea {
     font-size: 24px;
     margin-bottom: 20px;
   }
+
+  .col-lg-4 { border-right: 1px solid #4f921d; }
+  .col-lg-4:last-child { border-right: 0; }
+  .col-lg-4 + .col-lg-4 { border-left: 1px solid #6abb22; }
 }
 
 .featured-clients {
