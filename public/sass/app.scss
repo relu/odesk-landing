@@ -1,6 +1,7 @@
 @import "_fonts";
 
 $font-base: sans-serif;
+$font-helvetica: HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', sans-serif;
 $font-adelle-sb: "Adelle_Semibold";
 $font-adelle-sbi: "Adelle_SemiBoldItalic";
 $font-adelle-r: "Adelle_Regular";
@@ -350,6 +351,7 @@ textarea {
       width: 210px;
       font-size: 18px;
       font-weight: normal;
+      font-family: $font-helvetica;
       line-height: 21px;
       text-shadow: rgba(10, 99, 144, 0.298039) 0px -1px 0px;
       color: white;
@@ -366,6 +368,7 @@ textarea {
 
     .desc {
       padding: 8px 15px 0px;
+      font-family: $font-helvetica;
 
       p {
         font-size: 11px;
@@ -409,6 +412,7 @@ textarea {
   .info {
     display: inline-block;
     width: 83px;
+    font-family: $font-helvetica;
 
     .name {
       color: black;
@@ -468,6 +472,7 @@ textarea {
     color: white;
     text-shadow: none;
     font-weight: 100;
+    font-family: $font-helvetica;
     font-size: 24px;
     margin-bottom: 20px;
   }
