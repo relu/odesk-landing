@@ -556,3 +556,54 @@ textarea {
 
   &:active { background: #fab301; }
 }
+
+.search-panel {
+  background: #6F9B2F;
+  padding: 20px 0;
+
+  label {
+    display: block;
+    text-indent: 0;
+    text-transform: none;
+    color: black;
+  }
+
+  .form-group {
+    margin-bottom: 0;
+    padding: 0 20px;
+
+    &:first-child { border-right: 1px solid #4f921d; }
+    &:last-child { border-left: 1px solid #6abb22; }
+  }
+
+  .suggest-list {
+    padding: 6px 4px 6px 0;
+    position: absolute;
+    margin: -3px 0 0 3px;
+    background: white;
+    -moz-border-radius: 0 0 7px 7px;
+    -webkit-border-radius: 0 0 7px 7px;
+    -ms-border-radius: 0 0 7px 7px;
+    border-radius: 0 0 7px 7px;
+    border: 1px solid #dbdbd7;
+    -moz-box-shadow: 0 2px 2px rgba(45,40,45,.05);
+    -webkit-box-shadow: 0 2px 2px rgba(45,40,45,.05);
+    -ms-box-shadow: 0 2px 2px rgba(45,40,45,.05);
+    box-shadow: 0 2px 2px rgba(45,40,45,.05);
+    z-index: 100;
+    list-style-type: none;
+
+    li {
+      padding: 0 12px;
+      color: #252523;
+      white-space: nowrap;
+      line-height: 25px;
+      cursor: default;
+
+      &:hover,
+      &.current {
+        background: #f2f2f0;
+      }
+    }
+  }
+}

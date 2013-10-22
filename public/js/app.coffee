@@ -72,12 +72,43 @@ $ ->
       self = $(this)
 
       $.post '/send?'+self.serialize(), (content)->
-        console.log content
         $('.the-form').find('form, h1').fadeOut ->
           $('.the-form').html(content).fadeIn()
 
       return false
 
+  searchSuggest = (input)->
+    $input = $(input)
+    suggestList = $("<ul id='suggest-list' class='suggest-list'/>").hide()
+    $input.after(suggestList)
+
+    $input.keyup ->
+      val = $input.val().replace(/\s+$/, '')
+
+      $.get 'https://www.odesk.com/api/o2/v1/associations/*/search/contractors.json', data: JSON.stringify(q: val), (response)->
+        if response.proxy.suggestions?
+          return
+
+        suggestList.empty().hide()
+        $(response.proxy.suggestions).each (i, s)->
+          term = s.replace(/<(\/?)em>/ig, '')
+          text = term.replace(val, "<strong>#{val}</strong>")
+
+          if val == term
+            c = 'current'
+          else
+            c = ''
+
+          suggestList.append("<li data-term='#{term}' class='#{c}'>#{text}</li>")
+
+        suggestList.show()
+
+    suggestList.on 'click', 'li', ->
+      $input.val($(this).data('term'))
+      suggestList.hide()
+      $input.parents('form').submit()
+
   carousel()
   scrollCount()
   formSubmit()
+  searchSuggest('#q')
