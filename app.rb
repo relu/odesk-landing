@@ -51,7 +51,7 @@ class ODLanding < Sinatra::Base
     @ct_singular = @ct.gsub(/s$/, '')
   end
 
-  get %r{/(:?o/landing(:?S\d?)?)?} do
+  get %r{^/$|^/o/landing(:?S\d?)?} do
     query = session[:query] = Rack::Utils.escape_html(params[:query])
     skill = session[:skill] = Rack::Utils.escape_html(params[:skill])
     subcategory = session[:subcat] = Rack::Utils.escape_html(params[:subcategory])
@@ -111,6 +111,13 @@ class ODLanding < Sinatra::Base
       end
       format.json { {success: 1}.to_json }
     end
+  end
+
+  get '/autocomplete' do
+    q = OApi.build_q(params[:q])
+    suggestions = OApi.suggestions(q)
+
+    suggestions.to_json
   end
 
   helpers do

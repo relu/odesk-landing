@@ -94,17 +94,17 @@ $ ->
     $input = $(input)
     suggestList = $("<ul id='suggest-list' class='suggest-list'/>").hide()
     $input.after(suggestList)
+    form = $input.parents('form')
 
     $input.keyup ->
       val = $input.val().replace(/\s+$/, '')
 
-      $.get 'https://www.odesk.com/api/o2/v1/associations/*/search/contractors.json', data: JSON.stringify(q: val), (response)->
-        if response.proxy.suggestions?
-          return
+      if val.length < 3
+        return
 
+      $.get '/autocomplete.json', q: val, (response)->
         suggestList.empty().hide()
-        $(response.proxy.suggestions).each (i, s)->
-          term = s.replace(/<(\/?)em>/ig, '')
+        $(response).each (i, term)->
           text = term.replace(val, "<strong>#{val}</strong>")
 
           if val == term
@@ -119,7 +119,7 @@ $ ->
     suggestList.on 'click', 'li', ->
       $input.val($(this).data('term'))
       suggestList.hide()
-      $input.parents('form').submit()
+      form.submit()
 
   carousel()
   scrollCount()

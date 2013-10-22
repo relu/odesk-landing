@@ -4,7 +4,7 @@ require 'pp'
 class OApi
   include HTTParty
 
-  base_uri 'https://www.odesk.com/api/o2/v1/search'
+  base_uri 'https://www.odesk.com/api/o2/v1'
 
   def self.profiles(q)
     data = {
@@ -12,7 +12,7 @@ class OApi
       paging: '0;20'
     }
 
-    response = get('/*/profiles.json', query: { data: data.to_json })
+    response = get('/search/*/profiles.json', query: { data: data.to_json })
 
     return [] if response["proxy"].nil? || response["proxy"]["data"].nil?
 
@@ -35,6 +35,22 @@ class OApi
           hash: profile["dev_recno_ciphertext"],
           portrait_50: profile["dev_portrait_50"]
         }
+      end
+    end
+  end
+
+  def self.suggestions(q)
+    data = {
+      q: q
+    }
+
+    response = get('/associations/*/search/contractors.json', query: { data: data.to_json })
+
+    return [] if response["proxy"].nil? || response["proxy"]["suggestions"].nil?
+
+    [].tap do |suggestions|
+      response["proxy"]["suggestions"].each do |s|
+        suggestions << s.gsub(/<[^>]+>/, '')
       end
     end
   end
