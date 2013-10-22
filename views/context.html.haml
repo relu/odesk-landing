@@ -6,7 +6,7 @@
 %section.form-section
   .container
     .row
-      .col-lg-5.col-lg-offset-1.steps
+      .col-lg-5.col-lg-offset-1.col-sm-6.steps
         %h3 Find the right #{@ct_singular}<br>in 3 easy steps:
         %ul
           %li.block-1
@@ -30,7 +30,7 @@
             %p "With oDesk there is already this huge talent pool &mdash; I can put together my job description and start interviewing immediately."
             %small.author.pull-right.text-right Marjorie Asturias<br>Presitent & CEO of Blue Volcano Media
 
-      .col-lg-5.the-form
+      .col-lg-5.col-sm-6.the-form
         - if request.params.has_key?('confirmation')
           = haml :_confirmation
         - else
@@ -74,12 +74,12 @@
       .row
         .col-lg-12.text-center
           %h2 oDesk at a Glance
-        .col-lg-4.text-center.dev-count
+        .col-sm-4.text-center.dev-count
           %strong 4.5M+
           Freelancers
-        .col-lg-4.text-center.complete-count
+        .col-sm-4.text-center.complete-count
           %strong 900,000+
           Clients
-        .col-lg-4.text-center.project-count
+        .col-sm-4.text-center.project-count
           %strong $1B+
           Work Done

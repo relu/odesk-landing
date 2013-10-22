@@ -15,10 +15,10 @@ $ ->
       self.animate left: self.position().left+'px', 'slow', ->
         self.css(position: 'absolute')
 
-    if tileLength > 5
+    if tileLength > Math.ceil($('.contractors .wrapper').outerWidth() / tileWidth)
       $('.right-arrow').removeClass('disabled')
 
-    $('.left-arrow, .right-arrow').click (evt)->
+    handle = (evt)->
       evt.preventDefault()
 
       tileContainer.removeClass('slow')
@@ -36,7 +36,9 @@ $ ->
       firstTile = tiles.first()
       ftIndex = -firstTile.position().left / tileWidth
 
-      if self.hasClass('right-arrow')
+      tilecount = $('.contractors .wrapper').outerWidth() / tileWidth
+
+      if self.hasClass('right-arrow') || evt.type == 'swipeleft'
         ftTile = tiles.eq(ftIndex)
         ftTile.addClass('fast')
 
@@ -44,10 +46,10 @@ $ ->
           $(this).css left: $(this).position().left - tileWidth
           $('.left-arrow').removeClass('disabled')
 
-          if tiles.eq(0).position().left == -tileWidth * (tileLength - 6)
+          if tiles.eq(0).position().left == -tileWidth * (tileLength - tilecount - 1)
             $('.right-arrow').addClass('disabled')
       else
-        ftTile = tiles.eq(ftIndex + 4)
+        ftTile = tiles.eq(ftIndex + tilecount - 1)
         ftTile.addClass('fast')
 
         tiles.each (idx)->
@@ -56,6 +58,17 @@ $ ->
 
           if tiles.eq(0).position().left == -tileWidth
             $('.left-arrow').addClass('disabled')
+
+    tileContainer.on 'swiperight swipeleft', (evt)->
+      if $('.right-arrow').hasClass('disabled') && evt.type == 'swipeleft'
+        return
+      else if $('.left-arrow').hasClass('disabled') && evt.type == 'swiperight'
+        return
+
+      handle.call(this, evt)
+
+    $('.left-arrow, .right-arrow').on 'click', (evt)->
+      handle.call(this, evt)
 
     $('.tile:not(.fast)').on 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', ->
       if tileContainer.hasClass('transitioning')

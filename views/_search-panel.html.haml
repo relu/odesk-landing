@@ -1,11 +1,12 @@
 %form{action: '/'}
-  .col-lg-5.col-lg-offset-1.form-group
+  .col-sm-5.col-sm-offset-1.form-group
     %label Search for Other Freelancers:
     %input#q.form-control{name: 'query', value: params[:query]}
-  .col-lg-5.form-group
-    .col-lg-6
-      %label Country:
-      %select.form-control{name: 'country'}
-    .col-lg-6
-      %label Maximum Rate:
-      %select.form-control{name: 'max'}
+  .col-sm-5.form-group
+    .row
+      .col-sm-6
+        %label Country:
+        %select.form-control{name: 'country'}
+      .col-sm-6
+        %label Maximum Rate:
+        %select.form-control{name: 'max'}
