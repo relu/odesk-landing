@@ -6,9 +6,10 @@ class OApi
 
   base_uri 'https://www.odesk.com/api/o2/v1'
 
-  def self.profiles(q)
+  def self.profiles(q, rate='*')
     data = {
       q: q,
+      rate: "[* TO #{rate}]",
       paging: '0;20'
     }
 
@@ -31,7 +32,7 @@ class OApi
           skills: skills,
           name: profile["dev_short_name"],
           country: profile["dev_country"],
-          rate: profile["dev_pay_rate"],
+          rate: profile["dev_bill_rate"],
           hash: profile["dev_recno_ciphertext"],
           portrait_50: profile["dev_portrait_50"]
         }
@@ -55,12 +56,14 @@ class OApi
     end
   end
 
-  def self.build_q(query=nil, title=nil, skill=nil, subcategory=nil)
+  def self.build_q(params)
     q = ''
-    q = "#{query} " unless query.nil? or query.blank?
-    q += "title:#{title} " unless title.nil? or title.blank?
-    q += "skills:#{skill} " unless skill.nil? or skill.blank?
-    q += "subcategory:#{subcategory}" unless subcategory.nil? or subcategory.blank?
+    q = "#{params[:query]} " unless params[:query].nil? or params[:query].blank?
+
+    %i(title skills subcategory country).each do |key|
+      q += "#{key.to_s}:#{params[key]} " unless params[key].nil? or params[key].blank?
+    end
+
     q.strip!
   end
 end

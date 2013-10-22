@@ -56,15 +56,21 @@ class ODLanding < Sinatra::Base
     skill = session[:skill] = Rack::Utils.escape_html(params[:skill])
     subcategory = session[:subcat] = Rack::Utils.escape_html(params[:subcategory])
     title = session[:title] = Rack::Utils.escape_html(params[:title])
+    country = Rack::Utils.escape_html(params[:country])
+    rate = Rack::Utils.escape_html(params[:rate]) || '*'
 
     session[:url] = request.url
     session[:referrer] = request.referrer
     session[:ip] = request.ip
     session[:visit_timestamp] = Time.now.to_s
 
-    q = session[:q] = OApi.build_q(query, title, skill, subcategory)
+    q = session[:q] = OApi.build_q(query: query,
+                                   title: title,
+                                   skills: skill,
+                                   subcategory: subcategory,
+                                   country: country)
 
-    @profiles = OApi.profiles(q)
+    @profiles = OApi.profiles(q, rate)
     @keyword = session[:keyword]= if !query.nil?
                  query
                elsif !title.nil?
@@ -114,7 +120,7 @@ class ODLanding < Sinatra::Base
   end
 
   get '/autocomplete' do
-    q = OApi.build_q(params[:q])
+    q = OApi.build_q(query: params[:q])
     suggestions = OApi.suggestions(q)
 
     suggestions.to_json
