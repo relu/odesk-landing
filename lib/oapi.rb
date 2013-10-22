@@ -58,7 +58,7 @@ class OApi
 
   def self.build_q(params)
     q = ''
-    q = "#{params[:query]} " unless params[:query].nil? or params[:query].blank?
+    q += "#{params[:query]} " unless params[:query].nil? or params[:query].blank?
 
     %i(title skills subcategory country).each do |key|
       q += "#{key.to_s}:#{params[key]} " unless params[key].nil? or params[key].blank?
