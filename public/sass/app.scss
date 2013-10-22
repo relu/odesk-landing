@@ -487,6 +487,20 @@ textarea {
     font-family: $font-adelle-bi;
   }
 
+  ul {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    line-height: 56px;
+  }
+
+  .client-logo {
+    max-width: 192px;
+    width: 20%;
+    display: block;
+    float: left;
+  }
+
   img { max-width: 100%; }
 
   .wrapper {

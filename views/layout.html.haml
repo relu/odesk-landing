@@ -22,7 +22,7 @@
       .container
         .row
           %a.logo{href: '/'}
-            %img{src: '/images/header-logo.png'}
+            %img{src: '/images/logo.svg', width: 123, height: 33}
           %a.sign-up{href: 'https://www.odesk.com/signup/user-type'} Sign Up
 
     %main.page-main= yield
@@ -40,12 +40,22 @@
             %em More than <strong>900,000 companies</strong> use oDesk including:
           %hr/
 
-          %img{src: '/images/featured-clients.jpg', alt: 'Featured clients'}
+          %ul
+            %li.client-logo.text-left
+              %img{src: '/images/clients/opentable.svg', width: 97}
+            %li.client-logo.text-left
+              %img{src: '/images/clients/pinterest.svg', width: 113}
+            %li.client-logo.text-center
+              %img{src: '/images/clients/panasonic.svg', width: 134}
+            %li.client-logo.text-center
+              %img{src: '/images/clients/unilever.svg', height: 56}
+            %li.client-logo.text-right
+              %img{src: '/images/clients/thumbtack.svg', width: 149}
 
           %a.btn.btn-lg.btn-submit{href: '#'} Get Applicants Fast
 
     %footer.page-footer.text-center
-      %img.footer-logo{src: '/images/footer-logo.png', alt: 'oDesk'}
+      %img.footer-logo{src: '/images/logo.svg', alt: 'oDesk', width: 102, height: 27}
       %p.copy= "&copy; 2003-#{Time.now.year} oDesk Corporation."
 
     %script{src: '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'}
