@@ -24,9 +24,11 @@ class ODLanding < Sinatra::Base
     register Sinatra::RespondTo
     set :assume_xhr_is_js, false
 
+    set :sendto, ENV['SUBMIT_EMAIL_ADDRESS']
     set :optimizely_token, ENV['OPTIMIZELY_TOKEN']
     set :mixpanel_token, ENV['MIXPANEL_TOKEN']
     set :redirect_policy, (ENV['REDIRECT_POLICY'] || :noredirect).downcase.to_sym
+    set :ga_account, ENV['GA_ACCOUNT_ID']
   end
 
   configure :development do
@@ -105,7 +107,7 @@ class ODLanding < Sinatra::Base
 
     Mail.deliver do
       from      email
-      to        'aurelcanciu@odesk.com'
+      to        settings.sendto
       subject   'Landing page submission'
 
       text_part do
