@@ -26,11 +26,14 @@ class ODLanding < Sinatra::Base
 
     set :optimizely_token, ENV['OPTIMIZELY_TOKEN']
     set :mixpanel_token, ENV['MIXPANEL_TOKEN']
+    set :redirect_policy, (ENV['REDIRECT_POLICY'] || :noredirect).downcase.to_sym
   end
 
   configure :development do
     register Sinatra::Reloader
     set :logger, Logger.new($stdout)
+
+    also_reload "#{root}/lib/*.rb"
   end
 
   configure :production do
@@ -49,6 +52,14 @@ class ODLanding < Sinatra::Base
     @ct = Rack::Utils.escape_html(params[:ct])
     @ct = "Freelancers" if @ct.nil? or @ct.blank?
     @ct_singular = @ct.gsub(/s$/, '')
+  end
+
+  before %r{/o/landing(:?S[12]?)?} do
+    if settings.redirect_policy == :site
+      redirect to("https://www.odesk.com#{request.fullpath}"), 302
+    elsif settings.redirect_policy == :schedule and Time.now.hour.between?(9, 16)
+      redirect to("https://www.odesk.com#{request.fullpath}"), 302
+    end
   end
 
   get %r{^/$|^/o/landing(:?S\d?)?} do
