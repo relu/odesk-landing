@@ -35,6 +35,11 @@ http {
 
 				root /app/public;
 
+				location ^/(js|css|images)/ {
+					expires max;
+					add_header Cache-Control public;
+				}
+
 				location / {
 					try_files $uri $uri/index.html @app;
 				}
@@ -44,11 +49,6 @@ http {
                         proxy_set_header Host $http_host;
                         proxy_redirect off;
                         proxy_pass http://app_server;
-				}
-
-				location ^/(js|css|images)/ {
-					expires max;
-					add_header Cache-Control public;
 				}
         }
 }
