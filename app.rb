@@ -24,8 +24,8 @@ class ODLanding < Sinatra::Base
     register Sinatra::RespondTo
     set :assume_xhr_is_js, false
 
-    set :optimizely_token, '275553376'
-    set :mixpanel_token, 'fdf88b8da1749bafc5f24aee259f5aa4'
+    set :optimizely_token, ENV['OPTIMIZELY_TOKEN']
+    set :mixpanel_token, ENV['MIXPANEL_TOKEN']
   end
 
   configure :development do
