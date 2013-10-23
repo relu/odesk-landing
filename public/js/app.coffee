@@ -38,7 +38,7 @@ $ ->
 
       tilecount = $('.contractors .wrapper').outerWidth() / tileWidth
 
-      if self.hasClass('right-arrow') || evt.type == 'swipeleft'
+      if self.hasClass('right-arrow') || evt.type.indexOf('swipeleft') != -1
         ftTile = tiles.eq(ftIndex)
         ftTile.addClass('fast')
 
@@ -59,10 +59,10 @@ $ ->
           if tiles.eq(0).position().left == -tileWidth
             $('.left-arrow').addClass('disabled')
 
-    tiles.on 'swiperight swipeleft', (evt)->
-      if $('.right-arrow').hasClass('disabled') && evt.type == 'swipeleft'
+    tiles.on 'swiperight swiperightup swiperightdown swipeleft swipeleftup swipeleftdown ', (evt)->
+      if $('.right-arrow').hasClass('disabled') && evt.type.indexOf('swipeleft') != -1
         return
-      else if $('.left-arrow').hasClass('disabled') && evt.type == 'swiperight'
+      else if $('.left-arrow').hasClass('disabled') && evt.type.indexOf('swiperight') != -1
         return
 
       handle.call(this, evt)
