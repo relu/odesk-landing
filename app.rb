@@ -109,13 +109,15 @@ class ODLanding < Sinatra::Base
     @title = Rack::Utils.escape_html(params[:title])
     @desc = Rack::Utils.escape_html(params[:desc])
     @scroll_count = Rack::Utils.escape_html(params[:scroll_count]).to_i
-    email = params[:email]
 
     body_html = haml(:email, layout: false)
 
+    from = params[:email]
+    sendto = settings.sendto
+
     Mail.deliver do
-      from      email
-      to        settings.sendto
+      from      from
+      to        sendto
       subject   'Landing page submission'
 
       text_part do
