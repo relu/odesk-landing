@@ -289,6 +289,7 @@ textarea {
     list-style-type: none;
     padding: 0;
     margin: 0;
+    height: 100%;
 
     &.slow .tile {
       -moz-transition: all 1.5s ease-in-out;
