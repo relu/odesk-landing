@@ -24,9 +24,9 @@ a {
 
 blockquote {
   border: 0;
-  font-size: 20px;
   font-weight: bold;
-  color: #525252;
+  color: #666;
+  font-size: 18px;
 
   small {
     font-weight: normal;
@@ -82,6 +82,7 @@ hr {
     color: #5ea32b;
     margin-bottom: 40px;
     text-align: center;
+    line-height: 28px;
   }
 
   ul {
@@ -325,18 +326,18 @@ textarea {
 
     &.cta {
       height: 341px;
-      background: white url('../images/tile-CTA-icon.svg') no-repeat center 55px;
+      background: white url('../images/tile-CTA-icon.svg') no-repeat center 40px;
+      padding: 40px 0;
 
       .content {
         font-size: 18px;
         line-height: 20px;
         color: rgb(0, 173, 239);
         text-align: center;
-        top: 161px;
         padding: 7px 20px;
-        position: relative;
         font-family: $font-helvetica;
-        font-weight: 100;
+        font-weight: 200;
+        margin-top: 115px;
 
         strong {
           font-size: 24px;
@@ -544,13 +545,16 @@ textarea {
   blockquote {
     padding: 0;
     overflow: hidden;
-    font-family: $font-adelle-sb;
     font-size: 18px;
     text-shadow: 1px 1px 0 white;
     color: #666;
+    font-family: $font-adelle-sb;
 
     p {
       line-height: 26px;
+      font-size: 18px;
+      font-family: $font-adelle-sbi;
+      font-style: italic;
     }
   }
 
