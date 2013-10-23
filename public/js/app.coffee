@@ -59,7 +59,7 @@ $ ->
           if tiles.eq(0).position().left == -tileWidth
             $('.left-arrow').addClass('disabled')
 
-    tiles.on 'swipeone swiperight swiperightup swiperightdown swipeleft swipeleftup swipeleftdown ', (evt)->
+    tiles.on 'swiperight swipeleft ', (evt)->
       if $('.right-arrow').hasClass('disabled') && evt.type.indexOf('swipeleft') != -1
         return
       else if $('.left-arrow').hasClass('disabled') && evt.type.indexOf('swiperight') != -1
