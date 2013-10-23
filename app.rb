@@ -71,7 +71,7 @@ class ODLanding < Sinatra::Base
 
   get %r{^/$|^/o/landing(:?S\d?)?} do
     session[:query] = @query
-    session[:skill] = Rack::Utils.escape_html(params[:skill])
+    skill = session[:skill] = Rack::Utils.escape_html(params[:skill])
     subcategory = session[:subcat] = Rack::Utils.escape_html(params[:subcategory])
     title = session[:title] = Rack::Utils.escape_html(params[:title])
     country = Rack::Utils.escape_html(params[:country])
@@ -88,7 +88,10 @@ class ODLanding < Sinatra::Base
                                    subcategory: subcategory,
                                    country: country)
 
-    @profiles = OApi.profiles(q, rate)
+    data = OApi.profiles(q, rate)
+    @profiles = data[:profiles]
+    @profile_count = (data[:count] - data[:profiles].length).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
+
     @keyword = session[:keyword]= if !@query.nil?
                  @query
                elsif !title.nil?

@@ -325,14 +325,20 @@ textarea {
       background: white url('../images/tile-CTA-icon.svg') no-repeat center 55px;
 
       .content {
-        font-size: 24px;
-        line-height: 28px;
+        font-size: 18px;
+        line-height: 20px;
         color: rgb(0, 173, 239);
         text-align: center;
         top: 161px;
-        padding: 7px;
-        width: 224px;
+        padding: 7px 20px;
         position: relative;
+        font-family: $font-helvetica;
+        font-weight: 100;
+
+        strong {
+          font-size: 24px;
+          line-height: 28px;
+        }
       }
     }
 

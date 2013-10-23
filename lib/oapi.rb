@@ -12,35 +12,44 @@ class OApi
       paging: '0;20'
     }
 
+    out = {
+      profiles: [],
+      count: 0
+    }
+
     unless rate.nil? or rate.blank?
       data[:rate] = "[* TO #{rate}]"
     end
 
     response = get('/search/*/profiles.json', query: { data: data.to_json })
 
-    return [] if response["proxy"].nil? || response["proxy"]["data"].nil?
+    proxy = response["proxy"]
 
-    [].tap do |profiles|
-      response["proxy"]["data"].each do |p|
-        profile = p["data"]
+    return out if proxy.nil? || proxy["data"].nil?
 
-        skills = []
-        unless profile["skills"].nil?
-          skills = profile["skills"].map { |s| s["skl_name"] }.slice(0, 4)
-        end
+    out[:count] = proxy["paging"]["total"]
 
-        profiles << {
-          title: profile["dev_profile_title"],
-          desc: profile["dev_blurb"],
-          skills: skills,
-          name: profile["dev_short_name"],
-          country: profile["dev_country"],
-          rate: profile["dev_bill_rate"],
-          hash: profile["dev_recno_ciphertext"],
-          portrait_50: profile["dev_portrait_50"]
-        }
+    proxy["data"].each do |p|
+      profile = p["data"]
+
+      skills = []
+      unless profile["skills"].nil?
+        skills = profile["skills"].map { |s| s["skl_name"] }.slice(0, 4)
       end
+
+      out[:profiles] << {
+        title: profile["dev_profile_title"],
+        desc: profile["dev_blurb"],
+        skills: skills,
+        name: profile["dev_short_name"],
+        country: profile["dev_country"],
+        rate: profile["dev_bill_rate"],
+        hash: profile["dev_recno_ciphertext"],
+        portrait_50: profile["dev_portrait_50"]
+      }
     end
+
+    out
   end
 
   def self.suggestions(q)
