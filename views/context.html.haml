@@ -54,7 +54,10 @@
                 - profile[:skills].each do |skill|
                   %span= highlight(skill, @keyword)
             %footer
-              %a{href: "//www.odesk.com/users/#{profile[:hash]}", target: '_blank'}
+              - if ENV['PROFILE_IMAGE_LINK'] == 'enabled'
+                %a{href: "//www.odesk.com/users/#{profile[:hash]}", target: '_blank'}
+                  %img.image{src: profile[:portrait_50], alt: profile[:name]}
+              - else
                 %img.image{src: profile[:portrait_50], alt: profile[:name]}
               .info
                 .name= profile[:name]
