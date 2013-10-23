@@ -27,7 +27,7 @@
 
     %main.page-main= yield
 
-    - if params[:sp] != '0' or ENV['ENABLE_SEARCH_PANEL']
+    - if ENV['ENABLE_SEARCH_PANEL'] == 'true' or params[:sp] == '1'
       %section.search-panel
         .container
           .row
