@@ -527,7 +527,13 @@ textarea {
     float: left;
   }
 
-  img { max-width: 100%; }
+  img {
+    max-width: 100%;
+    -moz-transform: scale(.7);
+    -webkit-transform: scale(.7);
+    -ms-transform: scale(.7);
+    transform: scale(.7);
+  }
 
   .wrapper {
     max-width: 960px;
@@ -679,6 +685,13 @@ textarea {
         margin-right: 20px;
       }
     }
+  }
+
+  .featured-clients img {
+    -moz-transform: scale(1);
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
   }
 
   .contractors {
