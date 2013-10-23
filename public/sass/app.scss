@@ -359,6 +359,7 @@ textarea {
       box-shadow: rgb(255, 255, 255) 0px 1px 0px 0px;
       border-radius: 0 0 5px 5px;
       border-top: 1px solid rgb(220, 220, 220);
+      overflow: hidden;
     }
 
     h3 {
@@ -416,17 +417,19 @@ textarea {
 
   .image {
     border: 1px solid rgb(220, 220, 220);
-    width: 52px;
-    height: 52px;
-    display: inline-block;
-    margin-right: 7px;
+    width: 23%;
+    max-width: 100%;
+    display: block;
+    float: left;
     vertical-align: top;
   }
 
   .info {
-    display: inline-block;
-    width: 83px;
+    display: block;
+    float: left;
+    width: 42%;
     font-family: $font-helvetica;
+    padding-left: 10px;
 
     .name {
       color: black;
@@ -445,9 +448,10 @@ textarea {
 
   .rate {
     margin-top: 6px;
-    display: inline-block;
-    width: 56px;
+    display: block;
+    width: 35%;
     font-family: $font-helvetica;
+    float: left;
 
     .dollars {
       font-weight: bold;
