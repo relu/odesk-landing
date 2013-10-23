@@ -9,9 +9,12 @@ class OApi
   def self.profiles(q, rate='*')
     data = {
       q: q,
-      rate: "[* TO #{rate}]",
       paging: '0;20'
     }
+
+    unless rate.nil? or rate.blank?
+      data[:rate] = "[* TO #{rate}]"
+    end
 
     response = get('/search/*/profiles.json', query: { data: data.to_json })
 
