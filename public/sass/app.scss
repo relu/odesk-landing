@@ -146,6 +146,10 @@ hr {
 
   .form-group {
     margin-bottom: 20px;
+
+    p {
+      line-height: 1.2;
+    }
   }
 
   .form-control {
@@ -527,6 +531,11 @@ textarea {
     font-family: $font-adelle-sb;
     font-size: 18px;
     text-shadow: 1px 1px 0 white;
+    color: #666;
+
+    p {
+      line-height: 26px;
+    }
   }
 
   .author {
@@ -575,6 +584,7 @@ textarea {
   margin: 15px 0 18px;
   outline: 0 !important;
   font-family: $font-base;
+  font-weight: bold;
 
   &:active { background: #fab301; }
 }
@@ -627,6 +637,15 @@ textarea {
 }
 
 /* Media Queries */
+@media (min-width: 480px) {
+  .contractors {
+
+    .wrapper {
+      max-width: 492px;
+    }
+  }
+}
+
 @media (min-width: 768px) {
   .steps {
     padding-right: 80px;
