@@ -184,7 +184,10 @@ hr {
     -webkit-border-radius: 0 0 15px 15px;
     -ms-border-radius: 0 0 15px 15px;
     border-radius: 0 0 15px 15px;
-    box-shadow: 0 -8px 8px #dedede;
+    -moz-box-shadow: 0 -5px 15px rgba(0, 0, 0, .2);
+    -webkit-box-shadow: 0 -5px 15px rgba(0, 0, 0, .2);
+    -ms-box-shadow: 0 -5px 15px rgba(0, 0, 0, .2);
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, .2);
     min-height: 678px;
 
     .content {
