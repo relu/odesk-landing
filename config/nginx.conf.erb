@@ -36,9 +36,9 @@ http {
 
 				root /app/public;
 
-				location ^/(js|css|images)/ {
-					expires max;
+				location ~* \.(css|js|jpg|jpeg|png|svg)$ {
 					add_header Cache-Control public;
+					expires max;
 				}
 
 				location / {
