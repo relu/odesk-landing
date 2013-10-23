@@ -54,6 +54,11 @@ class ODLanding < Sinatra::Base
     @ct = Rack::Utils.escape_html(params[:ct])
     @ct = "Freelancers" if @ct.nil? or @ct.blank?
     @ct_singular = @ct.gsub(/s$/, '')
+
+    # Tracking
+    %w(vt_ref vt_kw vt_adg vt_cmp vt_src vt_med vt_device query).each do |key|
+      instance_variable_set("@#{key}", Rack::Utils.escape_html(params[:"#{key}"]))
+    end
   end
 
   before %r{/o/landing(:?S[12]?)?} do
@@ -65,8 +70,8 @@ class ODLanding < Sinatra::Base
   end
 
   get %r{^/$|^/o/landing(:?S\d?)?} do
-    query = session[:query] = Rack::Utils.escape_html(params[:query])
-    skill = session[:skill] = Rack::Utils.escape_html(params[:skill])
+    session[:query] = @query
+    session[:skill] = Rack::Utils.escape_html(params[:skill])
     subcategory = session[:subcat] = Rack::Utils.escape_html(params[:subcategory])
     title = session[:title] = Rack::Utils.escape_html(params[:title])
     country = Rack::Utils.escape_html(params[:country])
@@ -77,15 +82,15 @@ class ODLanding < Sinatra::Base
     session[:ip] = request.ip
     session[:visit_timestamp] = Time.now.to_s
 
-    q = session[:q] = OApi.build_q(query: query,
+    q = session[:q] = OApi.build_q(query: @query,
                                    title: title,
                                    skills: skill,
                                    subcategory: subcategory,
                                    country: country)
 
     @profiles = OApi.profiles(q, rate)
-    @keyword = session[:keyword]= if !query.nil?
-                 query
+    @keyword = session[:keyword]= if !@query.nil?
+                 @query
                elsif !title.nil?
                  title
                elsif !skill.nil?
