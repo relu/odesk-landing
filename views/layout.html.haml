@@ -57,7 +57,7 @@
       %img.footer-logo{src: '/images/logo.svg', alt: 'oDesk', width: 102, height: 27}
       %p.copy= "&copy; 2003-#{Time.now.year} oDesk Corporation."
 
-    %img{width: 1, height: 1, src: "https://www.odesk.com#{request.path_info}?vt_ref=#{URI.escape(request.referrer.to_s)}&#{request.query_string}", alt: ''}
+    %img{style: 'position: absolute', width: 1, height: 1, src: "https://www.odesk.com#{request.path_info}?vt_ref=#{URI.escape(request.referrer.to_s)}&#{request.query_string}", alt: ''}
 
     %script{src: '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'}
     %script{src: '/js/jquery.mobile.custom.min.js'}
