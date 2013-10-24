@@ -1,4 +1,4 @@
-%form{action: '/'}
+%form#search{action: '/'}
   .col-sm-5.col-sm-offset-1.form-group
     %label Search for Other Freelancers:
     %input#q.form-control{name: 'query', value: params[:query]}
@@ -6,7 +6,7 @@
     .row
       .col-sm-6
         %label Country:
-        %select.form-control{name: 'country'}
+        %select#country.form-control{name: 'country'}
           %option{value: ''} All
           %option{value: 'United States'} United States
           %option{value: 'Canada'} Canada
@@ -87,7 +87,7 @@
 
       .col-sm-6
         %label Maximum Rate:
-        %select.form-control{name: 'rate'}
+        %select#max-rate.form-control{name: 'rate'}
           %option{value: ''} Max
           %option{value: '5'} $5
           %option{value: '10'} $10
@@ -99,3 +99,10 @@
           %option{value: '40'} $40
           %option{value: '45'} $45
           %option{value: '50'} $50
+
+:coffee
+  $('#search').submit ->
+    mixpanel.track "Search",
+      keyword: $('#q').val()
+      country: $('#country').val()
+      maxRate: $('#max-rate').val()

@@ -13,6 +13,7 @@
     %link{rel: 'stylesheet', href: '/css/app.css'}
 
     %script{src: '/js/custom.modernizr.js'}
+    %script{src: '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'}
 
     = haml :_mixpanel, layout: false
 
@@ -59,7 +60,6 @@
 
     %img{style: 'position: absolute', width: 1, height: 1, src: "https://www.odesk.com#{request.path_info}?vt_ref=#{URI.escape(request.referrer.to_s)}&#{request.query_string}", alt: ''}
 
-    %script{src: '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'}
     %script{src: '/js/jquery.mobile.custom.min.js'}
     %script{src: '/js/app.js'}
 
@@ -81,3 +81,12 @@
         ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
+
+    :coffee
+      mixpanel.track "PageView",
+        vt_kw: "#{@vt_kw}"
+        vt_adg: "#{@vt_adg}"
+        vt_cmp: "#{@vt_cmp}"
+        query: "#{@query}"
+        profile_count: "#{@profile_count.gsub(',', '')}"
+        profile_ids: [#{@profiles.map { |p| "'#{p[:hash]}'" }.join(', ')}]

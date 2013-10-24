@@ -43,7 +43,7 @@
       %a.right-arrow.disabled{href: '#'}
     %ul.tiles
       - @profiles.each do |profile|
-        %li.tile
+        %li.tile{:'data-id' => profile[:hash]}
           %article
             %header
               %h3= highlight(profile[:title], @keyword)
@@ -73,6 +73,17 @@
             %br/
 
             %strong Get Applications Fast
+
+  :coffee
+    $('.tile:not(.cta)').click ->
+      id = $(this).data('id')
+      mixpanel.track "Tile Clicked", profileId: id
+    $('.tile.cta').click ->
+      mixpanel.track "CTA Tile Clicked"
+    $('.left-arrow:not(.disabled), .tile').bind "click swiperight", ->
+      mixpanel.track "Scroll Tiles Left"
+    $('.right-arrow:not(.disabled), .tile').bind "click swipeleft", ->
+      mixpanel.track "Scroll Tiles Right"
 
   .stats
     .container

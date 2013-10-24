@@ -7,6 +7,12 @@
 
   %a.btn.btn-lg.btn-submit.browse-odesk{href: "https://www.odesk.com/o/profiles/browse/?#{session[:full_query])}"} Browse oDesk Freelancers
 
+  :coffee
+    mixpanel.track "Posted Job"
+
+    $('.browse-odesk').click ->
+      mixpanel.track "Clicked 'Browse oDesk Freelancers'"
+
   :javascript
     var google_conversion_id = 1071292880;
     var google_conversion_language = "en";

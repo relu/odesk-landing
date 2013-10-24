@@ -1,6 +1,6 @@
 .form-headline
   %h1 Get #{@ct_singular} Applications Fast
-%form.form{action: '/send', method: 'post'}
+%form#submit-job.form{action: '/send', method: 'post'}
   .form-group
     %label{for: 'title'} Give your project a title
     %input#title.form-control{name: 'title', type: 'text', placeholder: 'Ex. Build a website'}
@@ -18,6 +18,18 @@
       %em.terms
         By pressing 'Get Applications Fast' you confirm that you accept the
         %br/
-        %a{href: 'https://www.odesk.com/info/terms/', target: '_blank'} Terms and Conditions
+        %a#tac{href: 'https://www.odesk.com/info/terms/', target: '_blank'} Terms and Conditions
         and
-        %a{href: 'https://www.odesk.com/info/terms/privacy/', target: '_blank'} Privacy Policy
+        %a#pp{href: 'https://www.odesk.com/info/terms/privacy/', target: '_blank'} Privacy Policy
+
+:coffee
+  $('#title, #desc, #email').bind "focus.mixpanel", ->
+    mixpanel.track "Filling Form"
+
+    $('#title, #desc, #email').unbind("focus.mixpanel")
+
+  $('#tac').click ->
+    mixpanel.track "Clicked 'Terms and Conditions'"
+
+  $('#pp').click ->
+    mixpanel.track "Clicked 'Privacy Policy'"

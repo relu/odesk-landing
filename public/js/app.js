@@ -47,7 +47,10 @@
             });
             $('.left-arrow').removeClass('disabled');
             if (tiles.eq(0).position().left === -tileWidth * (tileLength - tilecount - 1)) {
-              return $('.right-arrow').addClass('disabled');
+              $('.right-arrow').addClass('disabled');
+              if (typeof mixpalen === "undefined" || mixpalen === null) {
+                return mixpanel.track("End of tiles");
+              }
             }
           });
         } else {

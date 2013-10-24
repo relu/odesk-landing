@@ -48,6 +48,10 @@ $ ->
 
           if tiles.eq(0).position().left == -tileWidth * (tileLength - tilecount - 1)
             $('.right-arrow').addClass('disabled')
+
+            # track mixpanel end of tiles
+            unless mixpalen?
+              mixpanel.track "End of tiles"
       else
         ftTile = tiles.eq(ftIndex + tilecount - 1)
         ftTile.addClass('fast')
