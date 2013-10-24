@@ -65,10 +65,10 @@ class ODLanding < Sinatra::Base
   before %r{/o/landing(:?S[12]?)?} do
     if settings.redirect_policy == :site
       redirect to("https://www.odesk.com#{request.fullpath}"), 302
-    elsif !Time.now.saturday? and
-      !Time.now.sunday? and
-      settings.redirect_policy == :schedule and
-      Time.now.hour.between?(9, 16)
+    elsif settings.redirect_policy == :schedule and
+      Time.now.saturday? or
+      Time.now.sunday? or
+      !Time.now.hour.between?(9, 16)
 
       redirect to("https://www.odesk.com#{request.fullpath}"), 302
     end
