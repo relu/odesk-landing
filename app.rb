@@ -114,19 +114,19 @@ class ODLanding < Sinatra::Base
     @title = Rack::Utils.escape_html(params[:title])
     @desc = Rack::Utils.escape_html(params[:desc])
     @scroll_count = Rack::Utils.escape_html(params[:scroll_count]).to_i
+    @email = Rack::Utils.escape_html(params[:email])
 
     body_html = haml(:email, layout: false)
 
-    from = params[:email]
     sendto = settings.sendto
 
     Mail.deliver do
-      from      from
+      from      "odysseas@odesk.com"
       to        sendto
       subject   'Landing page submission'
 
       text_part do
-        body "Title: #{@title}\nDescription: #{@desc}"
+        body "Title: #{@title}\nDescription: #{@desc}\nEmail: #{@email}"
       end
 
       html_part do
