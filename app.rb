@@ -124,7 +124,7 @@ class ODLanding < Sinatra::Base
     Mail.deliver do
       from      "odysseas@odesk.com"
       to        sendto
-      subject   'Landing page submission'
+      subject   "Landing Page - #{@email} - #{@title}"
 
       text_part do
         body "Title: #{@title}\nDescription: #{@desc}\nEmail: #{@email}"
