@@ -12,6 +12,7 @@ gem 'rack_csrf'
 gem 'mail'
 gem 'puma'
 gem 'httparty'
+gem 'newrelic_rpm'
 
 group :development do
   gem 'pry'

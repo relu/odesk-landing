@@ -7,6 +7,7 @@ require 'logger'
 require 'sass/plugin/rack'
 require 'rack/coffee'
 require 'haml'
+require 'newrelic_rpm'
 
 require './lib/oapi.rb'
 
