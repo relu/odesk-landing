@@ -70,6 +70,7 @@ class ODLanding < Sinatra::Base
   end
 
   get %r{^/$|^/o/landing(:?S\d?)?} do
+    session[:full_query] = request.query_string
     session[:query] = @query
     skill = session[:skill] = Rack::Utils.escape_html(params[:skill])
     subcategory = session[:subcat] = Rack::Utils.escape_html(params[:subcategory])
