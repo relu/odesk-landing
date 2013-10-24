@@ -73,7 +73,7 @@ class ODLanding < Sinatra::Base
     session[:full_query] = request.query_string
     session[:query] = @query
     skill = session[:skill] = Rack::Utils.escape_html(params[:skill])
-    subcategory = session[:subcat] = Rack::Utils.escape_html(params[:subcategory])
+    subcategory = session[:subcat] = Rack::Utils.escape_html(params[:subcategory]).split(" ").map(&:capitalize).join(" ")
     title = session[:title] = Rack::Utils.escape_html(params[:title])
     country = Rack::Utils.escape_html(params[:country])
     rate = Rack::Utils.escape_html(params[:rate]) || '*'
