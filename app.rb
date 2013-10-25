@@ -1,9 +1,7 @@
 require 'sinatra/base'
-require 'sinatra/reloader'
 require 'sinatra/respond_to'
 require 'rack/csrf'
 require 'mail'
-require 'logger'
 require 'sass/plugin/rack'
 require 'rack/coffee'
 require 'haml'
@@ -33,6 +31,11 @@ class ODLanding < Sinatra::Base
   end
 
   configure :development do
+    require 'sinatra/reloader'
+    require 'logger'
+    require 'pry'
+    require 'profiler'
+
     register Sinatra::Reloader
     set :logger, Logger.new($stdout)
 
@@ -66,9 +69,9 @@ class ODLanding < Sinatra::Base
     if settings.redirect_policy == :site
       redirect to("https://www.odesk.com#{request.fullpath}"), 302
     elsif settings.redirect_policy == :schedule and
-      Time.now.saturday? or
+      (Time.now.saturday? or
       Time.now.sunday? or
-      !Time.now.hour.between?(9, 16)
+      !Time.now.hour.between?(9, 16))
 
       redirect to("https://www.odesk.com#{request.fullpath}"), 302
     end
@@ -116,6 +119,8 @@ class ODLanding < Sinatra::Base
     @desc = Rack::Utils.escape_html(params[:desc])
     @scroll_count = Rack::Utils.escape_html(params[:scroll_count]).to_i
     @email = Rack::Utils.escape_html(params[:email])
+
+    return if @title.empty? or @desc.length < 50 or @email.empty?
 
     body_html = haml(:email, layout: false)
     body_text = "Title: #{@title}\nDescription: #{@desc}\nEmail: #{@email}"
