@@ -105,10 +105,6 @@
           $title.parents('.form-group').addClass('has-error');
           errors.push('Project title field is required.');
         }
-        if ($desc.val() === '') {
-          $desc.parents('.form-group').addClass('has-error');
-          errors.push('Project description is required.');
-        }
         if ($desc.val().length < 50) {
           $desc.parents('.form-group').addClass('has-error');
           errors.push('Project description is too short (minimum 50 chars long).');
