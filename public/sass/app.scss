@@ -136,6 +136,17 @@ hr {
 }
 
 /* Form Section */
+.has-error .form-control {
+  border-color: #df7647;
+}
+
+.alert-danger {
+  border: 3px solid #df7647;
+  background: white;
+  color: black;
+  font-weight: bold;
+}
+
 .form-section {
   background: #f0f0f0;
   position: relative;

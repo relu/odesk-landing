@@ -93,15 +93,47 @@
       });
     };
     formSubmit = function() {
-      return $('.the-form form').submit(function() {
-        var self;
+      $('.the-form form').submit(function() {
+        var $desc, $email, $title, alert, errors, self;
         self = $(this);
+        self.find('.alert').remove();
+        errors = [];
+        $title = self.find('[name=title]');
+        $desc = self.find('[name=desc]');
+        $email = self.find('[name=email]');
+        if ($title.val() === '') {
+          $title.parents('.form-group').addClass('has-error');
+          errors.push('Project title field is required.');
+        }
+        if ($desc.val() === '') {
+          $desc.parents('.form-group').addClass('has-error');
+          errors.push('Project description is required.');
+        }
+        if ($desc.val().length < 50) {
+          $desc.parents('.form-group').addClass('has-error');
+          errors.push('Project description is too short (minimum 50 chars long).');
+        }
+        if ($email.val() === '') {
+          $email.parents('.form-group').addClass('has-error');
+          errors.push('Email field is required.');
+        }
+        if (errors.length > 0) {
+          alert = $('<div class="alert alert-danger" />');
+          $(errors).each(function() {
+            return $("<p>" + this + "</p>").appendTo(alert);
+          });
+          alert.hide().prependTo(self).fadeIn();
+          return false;
+        }
         $.post('/send?' + self.serialize(), function(content) {
           return $('.the-form').find('form, h1').fadeOut(function() {
             return $('.the-form').html(content).fadeIn();
           });
         });
         return false;
+      });
+      return $(document).on('focus', '.has-error .form-control', function() {
+        return $(this).parents('.has-error').removeClass('has-error');
       });
     };
     searchSuggest = function(input) {
