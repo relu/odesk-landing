@@ -55,6 +55,8 @@ class ODLanding < Sinatra::Base
   end
 
   before do
+    cache_control :public, :max_age => 36000 if self.class.production?
+
     @ct = Rack::Utils.escape_html(params[:ct])
     @ct = "Freelancers" if @ct.nil? or @ct.blank?
     @ct_singular = @ct.gsub(/s$/, '')
