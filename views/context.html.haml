@@ -46,13 +46,13 @@
         %li.tile{:'data-id' => profile[:hash]}
           %article
             %header
-              %h3= highlight(profile[:title], @keyword)
+              %h3= profile[:title]
             .profile
               .desc
-                %p= highlight(profile[:desc], @keyword)
+                %p= profile[:desc]
               .skills
                 - profile[:skills].each do |skill|
-                  %span= highlight(skill, @keyword)
+                  %span= highlight(skill, @keywords)
             %footer
               - if ENV['PROFILE_IMAGE_LINK'] == 'true'
                 %a{href: "//www.odesk.com/users/#{profile[:hash]}", target: '_blank'}

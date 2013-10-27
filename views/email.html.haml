@@ -58,8 +58,8 @@
                     %th q param
                     %td= "q=#{session[:q]}"
                   %tr
-                    %th hl keyword
-                    %td= session[:keyword]
+                    %th hl keywords
+                    %td= session[:keywords].join(', ')
 
             %tr
               %td

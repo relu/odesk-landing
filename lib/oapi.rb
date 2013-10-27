@@ -1,5 +1,4 @@
 require 'httparty'
-require 'pp'
 
 class OApi
   include HTTParty
@@ -9,6 +8,7 @@ class OApi
   def self.profiles(q, rate='*')
     data = {
       q: q,
+      hl: 1,
       paging: '0;20'
     }
 
@@ -30,22 +30,35 @@ class OApi
     out[:count] = proxy["paging"]["total"]
 
     proxy["data"].each do |p|
-      profile = p["data"]
+      profile_hl = p["hl"]
+      profile_data = p["data"]
 
       skills = []
-      unless profile["skills"].nil?
-        skills = profile["skills"].map { |s| s["skl_name"] }.slice(0, 4)
+      unless profile_data["skills"].nil?
+        skills = profile_data["skills"].map { |s| s["skl_name"] }.slice(0, 4)
       end
 
+      title = unless profile_hl.nil? or profile_hl["title"].nil?
+                profile_hl["title"].first
+              else
+                profile_data["dev_profile_title"]
+              end
+
+      blurb = unless profile_hl.nil? or profile_hl["blurb"].nil?
+                profile_hl["blurb"].first
+              else
+                profile_data["dev_blurb"]
+              end
+
       out[:profiles] << {
-        title: profile["dev_profile_title"],
-        desc: profile["dev_blurb"],
+        title: title,
+        desc: blurb,
         skills: skills,
-        name: profile["dev_short_name"],
-        country: profile["dev_country"],
-        rate: profile["dev_bill_rate"],
-        hash: profile["dev_recno_ciphertext"],
-        portrait_50: profile["dev_portrait_50"]
+        name: profile_data["dev_short_name"],
+        country: profile_data["dev_country"],
+        rate: profile_data["dev_bill_rate"],
+        hash: profile_data["dev_recno_ciphertext"],
+        portrait_50: profile_data["dev_portrait_50"]
       }
     end
 

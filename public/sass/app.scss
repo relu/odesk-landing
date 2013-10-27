@@ -387,6 +387,11 @@ textarea {
       overflow: hidden;
       text-overflow: ellipsis;
       margin: 0;
+
+      em {
+        font-weight: bold;
+        font-style: normal;
+      }
     }
   }
 
@@ -396,6 +401,11 @@ textarea {
     .desc {
       padding: 8px 15px 0px;
       font-family: $font-helvetica;
+
+      em {
+        font-weight: bold;
+        font-style: normal;
+      }
 
       p {
         font-size: 11px;

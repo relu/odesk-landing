@@ -103,15 +103,8 @@ class ODLanding < Sinatra::Base
     @profiles = data[:profiles]
     @profile_count = (data[:count] - data[:profiles].length).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
 
-    @keyword = session[:keyword]= if !@query.nil?
-                 @query
-               elsif !title.nil?
-                 title
-               elsif !skill.nil?
-                 skill
-               elsif !subcategory.nil?
-                 subcategory
-               end
+    @keywords = session[:keywords] = [@query, title, skill,
+                                      subcategory].compact.reject(&:empty?)
 
     haml :context
   end
@@ -173,9 +166,11 @@ class ODLanding < Sinatra::Base
       Rack::Csrf.csrf_tag(env)
     end
 
-    def highlight(text, keyword)
-      return text if keyword.nil? or keyword == ''
-      text.to_s.gsub(/(#{keyword})/i, "<strong>\\1</strong>")
+    def highlight(text, keywords)
+      keywords = Array(keywords)
+
+      return text if keywords.empty?
+      text.to_s.gsub(/(#{keywords.join('|')})/iu, "<strong>\\1</strong>")
     end
   end
 
