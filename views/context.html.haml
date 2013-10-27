@@ -49,7 +49,7 @@
               %h3= profile[:title]
             .profile
               .desc
-                %p= profile[:desc]
+                %p= truncate(profile[:desc])
               .skills
                 - profile[:skills].each do |skill|
                   %span= highlight(skill, @keywords)

@@ -172,6 +172,10 @@ class ODLanding < Sinatra::Base
       return text if keywords.empty?
       text.to_s.gsub(/(#{keywords.join('|')})/iu, "<strong>\\1</strong>")
     end
+
+    def truncate(text, length=30, ellipsis=" ...")
+      text.split(' ').slice(0, length).join(' ') + ellipsis
+    end
   end
 
 end
