@@ -6,6 +6,8 @@ require 'sass/plugin/rack'
 require 'rack/coffee'
 require 'haml'
 require 'newrelic_rpm'
+require 'digest/sha1'
+require 'redis'
 
 require './lib/oapi.rb'
 
@@ -28,6 +30,11 @@ class ODLanding < Sinatra::Base
     set :mixpanel_token, ENV['MIXPANEL_TOKEN']
     set :redirect_policy, (ENV['REDIRECT_POLICY'] || :noredirect).downcase.to_sym
     set :ga_account, ENV['GA_ACCOUNT_ID']
+
+    uri = URI.parse(ENV["REDISTOGO_URL"] || 'redis://localhost')
+    REDIS = Redis.new(host: uri.host,
+                      port: uri.port,
+                      password: uri.password)
   end
 
   configure :development do
@@ -100,7 +107,12 @@ class ODLanding < Sinatra::Base
                                    subcategory: subcategory,
                                    country: country)
 
-    data = OApi.profiles(q, rate)
+    data = is_cached(q)
+
+    unless data
+      data = set_cache(q, OApi.profiles(q, rate))
+    end
+
     @profiles = data[:profiles]
     @profile_count = (data[:count] - data[:profiles].length).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
 
@@ -180,6 +192,28 @@ class ODLanding < Sinatra::Base
 
     def truncate(text, length=30, ellipsis=" ...")
       text.split(' ').slice(0, length).join(' ') + ellipsis
+    end
+
+    def is_cached(q)
+      tag = "query:#{q}"
+      data = REDIS.get(tag)
+
+      if data
+        etag Digest::SHA1.hexdigest(q)
+        ttl = REDIS.ttl(tag)
+        response.header['X-Redis-TTL'] = ttl.to_s
+        response.header['X-Redis-Cache'] = 'HIT'
+        return JSON.parse(data, symbolize_names: true)
+      end
+    end
+
+    def set_cache(q, data)
+      etag Digest::SHA1.hexdigest(q)
+      tag = "query:#{q}"
+      response.header['X-Redis-Cache'] = 'MISS'
+      REDIS.setex(tag, 3600, data.to_json)
+
+      data
     end
   end
 

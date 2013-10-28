@@ -13,6 +13,7 @@ gem 'mail'
 gem 'puma'
 gem 'httparty'
 gem 'newrelic_rpm'
+gem 'redis'
 
 group :development do
   gem 'pry'
