@@ -8,6 +8,7 @@ require 'digest/sha1'
 require 'redis'
 require 'coffee_script'
 require 'sass'
+require 'uglifier'
 
 require './lib/oapi.rb'
 
