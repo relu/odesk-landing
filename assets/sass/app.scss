@@ -4,9 +4,6 @@ $font-base: sans-serif;
 $font-helvetica: HelveticaNeue-Light, 'Helvetica Neue Light', 'Helvetica Neue', sans-serif;
 $font-adelle-sb: "Adelle_Semibold";
 $font-adelle-sbi: "Adelle_SemiBoldItalic";
-$font-adelle-r: "Adelle_Regular";
-$font-adelle-i: "Adelle_Italic";
-$font-adelle-bi: "Adelle_BoldItalic";
 
 body {
   font-family: $font-base;
@@ -59,7 +56,7 @@ hr {
 .page-headline {
   h1 {
     font-size: 40px;
-    font-family: $font-adelle-r;
+    font-family: $font-adelle-sb;
     margin-bottom: 64px;
   }
 }
@@ -526,13 +523,7 @@ textarea {
   background: #f0f0f0;
   padding: 20px 0;
   color: #6e6e6e;
-  font-family: $font-adelle-i;
-
-  em { font-style: normal; }
-
-  strong {
-    font-family: $font-adelle-bi;
-  }
+  font-family: $font-adelle-sbi;
 
   ul {
     padding: 0;
