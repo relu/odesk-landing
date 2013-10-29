@@ -195,6 +195,7 @@ class ODLanding < Sinatra::Base
     end
 
     def is_cached(q)
+      q = q.to_s
       tag = "query:#{q}"
       data = REDIS.get(tag)
 
@@ -208,6 +209,7 @@ class ODLanding < Sinatra::Base
     end
 
     def set_cache(q, data)
+      q = q.to_s
       etag Digest::SHA1.hexdigest(q)
       tag = "query:#{q}"
       response.header['X-Redis-Cache'] = 'MISS'
