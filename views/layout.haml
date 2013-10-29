@@ -10,7 +10,7 @@
     %link{rel: 'shortcut icon', href: '//www.odesk.com/favicon.ico', type: 'image/x-icon'}
 
     %link{rel: 'stylesheet', href: '//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css'}
-    %link{rel: 'stylesheet', href: '/css/app.css'}
+    = stylesheet_tag 'app'
 
     %script{src: '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js'}
     %script{src: '//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js'}
@@ -22,7 +22,7 @@
     %header.page-header.text-center{role: 'banner'}
       .container
         .row
-          %img{src: '/images/logo.svg', width: 123, height: 33}
+          %img{src: image_path('logo.svg'), width: 123, height: 33}
           %a.sign-up{href: 'https://www.odesk.com/signup/user-type'} Sign Up
 
     %main.page-main= yield
@@ -42,26 +42,26 @@
 
           %ul
             %li.client-logo.text-left
-              %img{src: '/images/clients/opentable.svg', width: 97}
+              %img{src: image_path('clients/opentable.svg'), width: 97}
             %li.client-logo.text-left
-              %img{src: '/images/clients/pinterest.svg', width: 113}
+              %img{src: image_path('clients/pinterest.svg'), width: 113}
             %li.client-logo.text-center
-              %img{src: '/images/clients/panasonic.svg', width: 134}
+              %img{src: image_path('clients/panasonic.svg'), width: 134}
             %li.client-logo.text-center
-              %img{src: '/images/clients/unilever.svg', height: 56}
+              %img{src: image_path('clients/unilever.svg'), height: 56}
             %li.client-logo.text-right
-              %img{src: '/images/clients/thumbtack.svg', width: 149}
+              %img{src: image_path('clients/thumbtack.svg'), width: 149}
 
           %a.btn.btn-lg.btn-submit{href: '#'} Get Applications Fast
 
     %footer.page-footer.text-center
-      %img.footer-logo{src: '/images/logo.svg', alt: 'oDesk', width: 102, height: 27}
+      %img.footer-logo{src: image_path('logo.svg'), alt: 'oDesk', width: 102, height: 27}
       %p.copy= "&copy; 2003-#{Time.now.year} oDesk Corporation."
 
     %img{style: 'position: absolute', width: 1, height: 1, src: "https://www.odesk.com#{request.path_info}?vt_ref=#{URI.escape(request.referrer.to_s)}&#{request.query_string}", alt: ''}
 
     %script{src: '/js/jquery.mobile.custom.min.js'}
-    %script{src: '/js/app.js'}
+    = javascript_tag 'app'
 
     %script{src: "//cdn.optimizely.com/js/#{settings.optimizely_token}.js"}
 

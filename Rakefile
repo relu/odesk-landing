@@ -42,3 +42,8 @@ task :preload_data do
     REDIS.setex(tag, 3600, data.to_json)
   end
 end
+
+require 'sinatra/asset_pipeline/task.rb'
+require './app.rb'
+
+Sinatra::AssetPipeline::Task.define! ODLanding

@@ -48,7 +48,7 @@ hr {
 .page-header {
   height: 92px;
   border: 0;
-  background: #7bd454 url('../images/color-strip-wide.jpg') no-repeat bottom center;
+  background: #7bd454 image-url('color-strip-wide.jpg') no-repeat bottom center;
   border: 0;
   margin: 0 0 30px;
   line-height: 82px;
@@ -112,7 +112,7 @@ hr {
     }
 
     .icon {
-      background: url('../images/steps-icons.svg') no-repeat;
+      background: image-url('steps-icons.svg') no-repeat;
       width: 42px;
       height: 36px;
       display: inline-block;
@@ -169,7 +169,7 @@ hr {
   }
 
   .form-headline {
-    background: url('../images/form-headline-bg.png') no-repeat;
+    background: image-url('form-headline-bg.png') no-repeat;
     width: 521px;
     height: 128px;
     position: absolute;
@@ -252,7 +252,7 @@ textarea {
   height: 652px;
 
   .nav a {
-    background: url('../images/arrows.png') no-repeat;
+    background: image-url('arrows.png') no-repeat;
     width: 16px;
     height: 26px;
     display: block;
@@ -337,7 +337,7 @@ textarea {
 
     &.cta {
       height: 341px;
-      background: white url('../images/tile-CTA-icon.svg') no-repeat center 40px;
+      background: white image-url('tile-CTA-icon.svg') no-repeat center 40px;
       padding: 40px 0;
 
       .content {

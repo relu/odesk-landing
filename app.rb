@@ -1,12 +1,13 @@
 require 'sinatra/base'
+require 'sinatra/asset_pipeline'
 require 'rack/csrf'
 require 'mail'
-require 'sass/plugin/rack'
-require 'rack/coffee'
 require 'haml'
 require 'newrelic_rpm'
 require 'digest/sha1'
 require 'redis'
+require 'coffee_script'
+require 'sass'
 
 require './lib/oapi.rb'
 
@@ -14,13 +15,17 @@ class ODLanding < Sinatra::Base
 
   configure do
     enable :sessions
-    Sass::Plugin.options[:style] = :compressed
-    Sass::Plugin.options[:css_location] = "#{public_folder}/css"
-    Sass::Plugin.options[:template_location] = "#{public_folder}/sass"
-    use Sass::Plugin::Rack
 
+    set :assets_precompile, %w(app.js app.css *.png *.jpg *.svg)
+
+    set :assets_prefix, %w(assets)
+
+    set :assets_css_compressor, :sass
+
+    set :assets_js_compressor, :uglifier
+
+    register Sinatra::AssetPipeline
     use Rack::Csrf, :raise => true
-    use Rack::Coffee, root: public_folder, urls: '/js'
     set :assume_xhr_is_js, false
 
     set :sendto, ENV['SUBMIT_EMAIL_ADDRESS']
