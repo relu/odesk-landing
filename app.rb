@@ -189,7 +189,7 @@ class ODLanding < Sinatra::Base
     end
 
     def truncate(text, length=30, ellipsis=" ...")
-      text.split(' ').slice(0, length).join(' ') + ellipsis
+      text.to_s.split(' ').slice(0, length).join(' ') + ellipsis
     end
 
     def is_cached(q)
