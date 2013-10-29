@@ -1,5 +1,4 @@
 require 'sinatra/base'
-require 'sinatra/respond_to'
 require 'rack/csrf'
 require 'mail'
 require 'sass/plugin/rack'
@@ -22,7 +21,6 @@ class ODLanding < Sinatra::Base
 
     use Rack::Csrf, :raise => true
     use Rack::Coffee, root: public_folder, urls: '/js'
-    register Sinatra::RespondTo
     set :assume_xhr_is_js, false
 
     set :sendto, ENV['SUBMIT_EMAIL_ADDRESS']
@@ -149,16 +147,11 @@ class ODLanding < Sinatra::Base
       end
     end
 
-    respond_to do |format|
-      format.html do
-        if request.xhr?
-          return haml :_confirmation, layout: false
-        end
-
-        redirect to('/?confirmation')
-      end
-      format.json { {success: 1}.to_json }
+    if request.xhr?
+      return haml :_confirmation, layout: false
     end
+
+    redirect to('/?confirmation')
   end
 
   get '/autocomplete' do
@@ -169,10 +162,7 @@ class ODLanding < Sinatra::Base
   end
 
   not_found do
-    respond_to do |format|
-      format.html { haml :'404', layout: false }
-      halt 404
-    end
+    haml :'404', layout: false
   end
 
   helpers do
