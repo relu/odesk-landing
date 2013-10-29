@@ -171,6 +171,7 @@ class ODLanding < Sinatra::Base
   not_found do
     respond_to do |format|
       format.html { haml :'404', layout: false }
+      halt 404
     end
   end
 
