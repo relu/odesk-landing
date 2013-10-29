@@ -14,6 +14,7 @@ gem 'puma'
 gem 'httparty'
 gem 'newrelic_rpm'
 gem 'redis'
+gem 'rake'
 
 group :development do
   gem 'pry'
