@@ -60,7 +60,7 @@
 
     %img{style: 'position: absolute', width: 1, height: 1, src: "https://www.odesk.com#{request.path_info}?vt_ref=#{URI.escape(request.referrer.to_s)}&#{request.query_string}", alt: ''}
 
-    %script{src: '/js/jquery.mobile.custom.min.js'}
+    = javascript_tag 'jquery.mobile.custom.min.js'
     = javascript_tag 'app'
 
     %script{src: "//cdn.optimizely.com/js/#{settings.optimizely_token}.js"}

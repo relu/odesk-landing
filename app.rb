@@ -17,7 +17,7 @@ class ODLanding < Sinatra::Base
   configure do
     enable :sessions
 
-    set :assets_precompile, %w(app.js app.css *.png *.jpg *.svg)
+    set :assets_precompile, %w(*.js *.css *.png *.jpg *.svg)
 
     set :assets_prefix, %w(assets)
 
