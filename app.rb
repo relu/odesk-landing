@@ -209,7 +209,7 @@ class ODLanding < Sinatra::Base
       etag Digest::SHA1.hexdigest(q)
       tag = "query:#{q}"
       response.header['X-Redis-Cache'] = 'MISS'
-      REDIS.setex(tag, 3600, data.to_json)
+      REDIS.setex(tag, 345600, data.to_json)
 
       data
     end
