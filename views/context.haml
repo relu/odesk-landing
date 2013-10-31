@@ -85,17 +85,22 @@
     $('.right-arrow:not(.disabled), .tile').bind "click swipeleft", ->
       mixpanel.track "Scroll Tiles Right"
 
-  .stats
+- if settings.search_panel_enabled
+  %section.search-panel
     .container
-      .row
-        .col-lg-12.text-center
-          %h2 oDesk at a Glance
-        .col-sm-4.text-center.dev-count
-          %strong 4.5M+
-          Freelancers
-        .col-sm-4.text-center.complete-count
-          %strong 900,000+
-          Clients
-        .col-sm-4.text-center.project-count
-          %strong $1B+
-          Work Done
+      .row= haml :'_search-panel', layout: false
+
+%section.stats
+  .container
+    .row
+      .col-lg-12.text-center
+        %h2 oDesk at a Glance
+      .col-sm-4.text-center.dev-count
+        %strong 4.5M+
+        Freelancers
+      .col-sm-4.text-center.complete-count
+        %strong 900,000+
+        Clients
+      .col-sm-4.text-center.project-count
+        %strong $1B+
+        Work Done

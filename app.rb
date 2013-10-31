@@ -33,6 +33,7 @@ class ODLanding < Sinatra::Base
     set :optimizely_token, ENV['OPTIMIZELY_TOKEN']
     set :mixpanel_token, ENV['MIXPANEL_TOKEN']
     set :redirect_policy, (ENV['REDIRECT_POLICY'] || :noredirect).downcase.to_sym
+    set :search_panel_enabled, ENV['ENABLE_SEARCH_PANEL'] == 'true' || params[:sp] == '1'
     set :ga_account, ENV['GA_ACCOUNT_ID']
 
     uri = URI.parse(ENV["REDISTOGO_URL"] || 'redis://localhost')

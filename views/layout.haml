@@ -27,12 +27,6 @@
 
     %main.page-main= yield
 
-    - if ENV['ENABLE_SEARCH_PANEL'] == 'true' or params[:sp] == '1'
-      %section.search-panel
-        .container
-          .row
-            = haml :'_search-panel', layout: false
-
     %section.featured-clients
       .container
         .wrapper.text-center

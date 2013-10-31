@@ -246,7 +246,10 @@ textarea {
   background: #7bd454;
   padding: 23px 0;
   position: relative;
-  height: 652px;
+  -moz-box-shadow: 0 -99px 0 #5ea32b inset;
+  -webkit-box-shadow: 0 -99px 0 #5ea32b inset;
+  -ms-box-shadow: 0 -99px 0 #5ea32b inset;
+  box-shadow: 0 -99px 0 #5ea32b inset;
 
   .nav a {
     background: image-url('arrows.png') no-repeat;
@@ -492,7 +495,8 @@ textarea {
 }
 
 .stats {
-  padding-top: 74px;
+  background: #5ea32b;
+  padding-bottom: 35px;
   color: #1f5b05;
   font-size: 19px;
   text-shadow: 0 1px 0 #76b14b;
@@ -628,8 +632,9 @@ textarea {
 }
 
 .search-panel {
-  background: #6F9B2F;
-  padding: 20px 0;
+  background: #5ea32b;
+  padding: 0 0 20px 0;
+  border-bottom: 1px solid #6abb22;
 
   label {
     display: block;
@@ -707,19 +712,16 @@ textarea {
   }
 
   .contractors {
-    height: 534px;
 
     .wrapper {
       max-width: 738px;
     }
+  }
 
-    .stats {
-      height: 242px;
-
-      .col-sm-4 { border-right: 1px solid #4f921d; }
-      .col-sm-4:last-child { border-right: 0; }
-      .col-sm-4 + .col-sm-4 { border-left: 1px solid #6abb22; }
-    }
+  .stats {
+    .col-sm-4 { border-right: 1px solid #4f921d; }
+    .col-sm-4:last-child { border-right: 0; }
+    .col-sm-4 + .col-sm-4 { border-left: 1px solid #6abb22; }
   }
 
   .form-section {
