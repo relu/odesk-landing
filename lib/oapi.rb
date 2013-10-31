@@ -9,6 +9,7 @@ class OApi
     data = {
       q: q,
       hl: 1,
+      profile_access: 'public',
       paging: '0;20'
     }
 
