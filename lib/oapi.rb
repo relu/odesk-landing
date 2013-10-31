@@ -5,7 +5,7 @@ class OApi
 
   base_uri 'https://www.odesk.com/api/o2/v1'
 
-  def self.profiles(q, rate='*')
+  def self.profiles(q, subcategory=nil, rate='*')
     data = {
       q: q,
       hl: 1,
@@ -20,6 +20,10 @@ class OApi
 
     unless rate.nil? or rate.blank?
       data[:rate] = "[* TO #{rate}]"
+    end
+
+    unless subcategory.nil?
+      data[:subcategory] = subcategory
     end
 
     response = get('/search/*/profiles.json', query: { data: data.to_json })

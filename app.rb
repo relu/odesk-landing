@@ -106,13 +106,12 @@ class ODLanding < Sinatra::Base
     q = session[:q] = OApi.build_q(query: @query,
                                    title: title,
                                    skills: skill,
-                                   subcategory: subcategory,
                                    country: country)
 
     data = is_cached(q)
 
     unless data
-      data = set_cache(q, OApi.profiles(q, rate))
+      data = set_cache(q, OApi.profiles(q, subcategory, rate))
     end
 
     @profiles = data[:profiles]
