@@ -19,6 +19,9 @@ gem 'rake'
 
 group :development do
   gem 'pry'
+end
+
+group :development, :test do
   gem 'rspec'
   gem 'capybara'
   gem 'capybara-webkit'
