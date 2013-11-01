@@ -21,8 +21,8 @@ group :development do
   gem 'pry'
 end
 
+gem 'rspec'
 group :development, :test do
-  gem 'rspec'
   gem 'capybara'
   gem 'capybara-webkit'
 end
