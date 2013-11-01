@@ -20,7 +20,6 @@ GEM
     execjs (2.0.2)
     haml (4.0.3)
       tilt
-    headless (1.0.1)
     hike (1.2.3)
     httparty (0.12.0)
       json (~> 1.8)
@@ -110,7 +109,6 @@ DEPENDENCIES
   capybara-webkit
   coffee-script
   haml
-  headless
   httparty
   mail
   newrelic_rpm
