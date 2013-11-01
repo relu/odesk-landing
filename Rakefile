@@ -1,12 +1,18 @@
 require 'rake'
-require 'pp'
-require 'csv'
-require 'cgi'
-require 'redis'
-require './lib/oapi.rb'
+require 'rspec/core/rake_task'
+
+RSpec::Core::RakeTask.new(:spec)
+
+task :default => :spec
 
 desc 'Preload API data into cache'
 task :preload_data do
+  require 'pp'
+  require 'csv'
+  require 'cgi'
+  require 'redis'
+  require './lib/oapi.rb'
+
   uri = URI.parse(ENV["REDISTOGO_URL"] || 'redis://localhost')
   REDIS = Redis.new(host: uri.host,
                     port: uri.port,

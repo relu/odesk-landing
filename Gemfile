@@ -19,4 +19,7 @@ gem 'rake'
 
 group :development do
   gem 'pry'
+  gem 'rspec'
+  gem 'capybara'
+  gem 'capybara-webkit'
 end

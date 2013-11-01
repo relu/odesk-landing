@@ -26,14 +26,13 @@ class ODLanding < Sinatra::Base
     set :assets_js_compressor, :uglifier
 
     register Sinatra::AssetPipeline
-    use Rack::Csrf, :raise => true
     set :assume_xhr_is_js, false
 
     set :sendto, ENV['SUBMIT_EMAIL_ADDRESS']
     set :optimizely_token, ENV['OPTIMIZELY_TOKEN']
     set :mixpanel_token, ENV['MIXPANEL_TOKEN']
     set :redirect_policy, (ENV['REDIRECT_POLICY'] || :noredirect).downcase.to_sym
-    set :search_panel_enabled, ENV['ENABLE_SEARCH_PANEL'] == 'true' || params[:sp] == '1'
+    set :search_panel_enabled, ENV['ENABLE_SEARCH_PANEL'] == 'true'
     set :ga_account, ENV['GA_ACCOUNT_ID']
 
     uri = URI.parse(ENV["REDISTOGO_URL"] || 'redis://localhost')
@@ -54,8 +53,14 @@ class ODLanding < Sinatra::Base
     also_reload "#{root}/lib/*.rb"
   end
 
+  configure :test do
+    set :sendto, 'tester@example.com'
+  end
+
   configure :production do
     set :server, :puma
+
+    use Rack::Csrf, :raise => true
 
     Mail.defaults do
       delivery_method :smtp, :address   => 'smtp.sendgrid.net',
