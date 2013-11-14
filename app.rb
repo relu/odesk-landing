@@ -58,8 +58,6 @@ class ODLanding < Sinatra::Base
   end
 
   configure :production do
-    set :server, :puma
-
     use Rack::Csrf, :raise => true
 
     Mail.defaults do
